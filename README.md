@@ -1,2 +1,8 @@
-# javaShip2020
-popcorn - movie wish list &amp; fetchPlay - music playlist
+# pocorn
+Movie wish list &amp; fetchPlay - music playlist
+
+## ToDo:
+- [x] maven
+- [x] tests
+- [ ] git
+
