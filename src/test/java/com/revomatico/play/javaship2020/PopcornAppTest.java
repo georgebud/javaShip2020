@@ -7,6 +7,6 @@ import org.junit.Test;
 public class PopcornAppTest {
   @Test
   public void shouldAnswerWithTrue() {
-    assertTrue(false);
+    assertTrue(true);
   }
 }
