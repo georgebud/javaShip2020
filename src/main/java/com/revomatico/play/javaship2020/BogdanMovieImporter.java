@@ -4,13 +4,16 @@ import java.io.*;
 
 public class BogdanMovieImporter {
 
-    public void importAllFrom(String path, PopcornApp app) {
+    public void importAllFrom(String path, PopcornApp app) { System.out.println("Salut");
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
             while (line != null) {
                 String[] movieProprieties = line.split(",");
-                app.addMovie(new PopcornApp.Movie(movieProprieties[5]));
+              
+                int year=Integer.parseInt(movieProprieties[10]);
+                System.out.println(year);
+                app.addMovie(new PopcornApp.Movie(movieProprieties[5],year));
                 line = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {
