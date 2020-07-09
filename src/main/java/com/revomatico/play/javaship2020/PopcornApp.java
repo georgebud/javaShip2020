@@ -36,7 +36,7 @@ public class PopcornApp {
     movies.add(movie);
   }
 
-  public List<Movie> sortMovies(List<Movie> movies)
+  public void print_sortMovies(List<Movie> movies)
   {
       Movie aux;
       boolean swapped;
@@ -54,6 +54,10 @@ public class PopcornApp {
           if(swapped=false)
             break;
       }
-      return movies;
+      System.out.println("Sorted movies are: ");
+      for(int i=0;i<movies.size();i++)
+      {
+        System.out.println(movies.get(i));
+      }
   }
 }

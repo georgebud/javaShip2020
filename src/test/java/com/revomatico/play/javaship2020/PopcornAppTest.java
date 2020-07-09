@@ -28,14 +28,15 @@ public class PopcornAppTest {
     PopcornApp app = new PopcornApp();
     //from csv list
     //new BogdanMovieImporter().importAllFrom("./src/main/resources/WATCHLIST.csv",app);
-    //BogdanMovieImporter vlad=new BogdanMovieImporter();
-    //vlad.importAllFrom("./src/main/resources/WATCHLIST.csv",app);
-   // List<Movie> movies;
+    BogdanMovieImporter vlad=new BogdanMovieImporter();
+    vlad.importAllFrom("./src/main/resources/WATCHLIST.csv",app);
+    //app.listMovies();
+    //List<Movie> movies = new ArrayList<>();
    //app.sortMovies(app.movies);
     
     //new IonelaMovieImporter().importAllFrom("file.csv",app);
     //app.addMovie(new Movie());
-    // app.listMovies();
+     app.print_sortMovies(app.listMovies());
     //movies.get(0).productionYear <= movies.get(1).productionYear
    // movies.stream().forEach(System.out::println);
   }
