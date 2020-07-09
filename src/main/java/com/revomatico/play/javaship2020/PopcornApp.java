@@ -12,6 +12,11 @@ public class PopcornApp {
     Movie(String name) {
       this.name = name;
     }
+
+    @Override
+    public String toString() {
+      return this.name;
+    }
   }
 
   private List<Movie> movies = new ArrayList<>();

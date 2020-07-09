@@ -27,11 +27,11 @@ public class PopcornAppTest {
   public void listMoviesSorted() {
     PopcornApp app = new PopcornApp();
     //from csv list
-    //new IonelMovieImporter().importAllFrom("file.csv",app);
+    //new BogdanMovieImporter().importAllFrom("./src/main/resources/WATCHLIST.csv",app);
     //new IonelaMovieImporter().importAllFrom("file.csv",app);
     app.addMovie(new Movie());
     List<Movie> movies = app.listMovies();
     //movies.get(0).productionYear <= movies.get(1).productionYear
-    System.out.println(movies);
+    movies.stream().forEach(System.out::println);
   }
 }
