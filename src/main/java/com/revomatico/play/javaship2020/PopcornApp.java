@@ -26,7 +26,12 @@ public class PopcornApp {
     }
   }
 
-  private List<Movie> movies = new ArrayList<>();
+    public void setMovies(List<Movie> movies) //useful for sorting
+    {
+        this.movies = movies;
+    }
+
+    private List<Movie> movies = new ArrayList<>();
 
   public List<Movie> listMovies() {
     return movies;
@@ -36,23 +41,21 @@ public class PopcornApp {
     movies.add(movie);
   }
 
-  public void print_sortMovies(List<Movie> movies)
-  {
-      Movie aux;
-      boolean swapped;
-      for(int i=0; i< movies.size()-1; i++)
-      {
-        
-        for(int j=0;j<movies.size()-i-1;j++)
+    class Sortbyyear implements Comparator<Movie>
+    {
+
+        public int compare(Movie a, Movie b)
         {
-          if(movies.get(j).getDate()>movies.get(j+1).getDate())
-          {
-            Collections.swap(movies, j, j+1); 
-            
-          }
+            return a.getDate() - b.getDate();
         }
-          
-      }
+    }
+
+    public  List<Movie> sort_movie(List<Movie> movies){
+ Collections.sort(movies,new Sortbyyear());
+  return  movies;
+  }
+  public void print_Movies(List<Movie> movies)
+  {
       System.out.println("Sorted movies are: ");
       for(int i=0;i<movies.size();i++)
       {
