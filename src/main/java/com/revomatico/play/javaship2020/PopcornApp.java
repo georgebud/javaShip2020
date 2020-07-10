@@ -27,7 +27,6 @@ public class PopcornApp {
     }
 
     public void print_Movies(List<Movie> movies) {
-        sort_movie(movies);
         System.out.println("Sorted movies are: ");
         for (int i = 0; i < movies.size(); i++) {
             System.out.println(movies.get(i));
