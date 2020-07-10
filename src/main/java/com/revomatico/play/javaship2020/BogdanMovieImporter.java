@@ -1,18 +1,21 @@
 package com.revomatico.play.javaship2020;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class BogdanMovieImporter {
 
     public void importAllFrom(String path, PopcornApp app) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
             while (line != null) {
                 String[] movieProprieties = line.split(",");
-              
-                int year=Integer.parseInt(movieProprieties[10]);
-                app.addMovie(new PopcornApp.Movie(movieProprieties[5],year));
+
+                int year = Integer.parseInt(movieProprieties[10]);
+                app.addMovie(new PopcornApp.Movie(movieProprieties[5], year));
                 line = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {
