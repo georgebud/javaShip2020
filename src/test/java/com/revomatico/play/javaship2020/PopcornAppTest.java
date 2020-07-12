@@ -37,5 +37,19 @@ public class PopcornAppTest {
 
   }
 
+  @Test
+  public void listMoviesSortedLaura() {
+    PopcornApp app = new PopcornApp();
+
+    LauraMovieImporter lauraMovieImporter = new LauraMovieImporter();
+    app.setMovies(lauraMovieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
+    app.setMovies(app.sort_movie(app.listMovies()));
+
+    List<Movie> movies = app.listMovies();
+    for(int i = 0; i < movies.size() - 1; i++)
+      Assert.assertTrue(movies.get(i).compareTo(movies.get(i + 1)) <= 0); //check if the list is sorted
+    app.print_Movies(app.listMovies());   //print the movies
+  }
+
   
 }
