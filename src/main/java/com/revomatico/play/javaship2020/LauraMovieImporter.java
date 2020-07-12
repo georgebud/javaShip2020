@@ -14,7 +14,7 @@ public class LauraMovieImporter {
     public List<PopcornApp.Movie> importMovies(String path) {
 
         List<PopcornApp.Movie> movies = new ArrayList<>();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy");
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader(path));
 
