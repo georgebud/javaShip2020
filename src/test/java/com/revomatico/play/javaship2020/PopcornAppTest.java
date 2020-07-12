@@ -1,10 +1,10 @@
 package com.revomatico.play.javaship2020;
-
 import java.util.List;
-
 import com.revomatico.play.javaship2020.PopcornApp.Movie;
 import org.junit.Assert;
 import org.junit.Test;
+
+//import main.java.com.revomatico.play.javaship2020.VladMovieImporter;
 
 public class PopcornAppTest {
   @Test
@@ -27,11 +27,13 @@ public class PopcornAppTest {
   public void listMoviesSorted() {
     PopcornApp app = new PopcornApp();
 
-    BogdanMovieImporter vlad=new BogdanMovieImporter();
-    vlad.importAllFrom("./src/main/resources/WATCHLIST.csv",app);
-
+    VladMovieImporter vlad=new VladMovieImporter();
+    vlad.importmovies(app);
+    
     app.setMovies(app.sort_movie(app.listMovies()));
+   // app.setMovies(app.listMovies());
     app.print_Movies(app.listMovies());
+   // app.movies=sort_movie(app.listMovies());
 
   }
 

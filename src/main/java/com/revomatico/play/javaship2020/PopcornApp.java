@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PopcornApp {
     private List<Movie> movies = new ArrayList<>();
 
-    public void setMovies(List<Movie> movies) //useful for sorting
+    public void setMovies(List<Movie> movies) // useful for sorting
     {
         this.movies = movies;
     }
@@ -22,7 +24,7 @@ public class PopcornApp {
     }
 
     public List<Movie> sort_movie(List<Movie> movies) {
-        Collections.sort(movies, new Sortbyyear());
+        Collections.sort(movies);
         return movies;
     }
 
@@ -33,14 +35,14 @@ public class PopcornApp {
         }
     }
 
-    public static class Movie {
+    public static class Movie implements Comparable<Movie> {
         private String name;
-        private int prod_date;
+        private Date prod_date;
 
         Movie() {
         }
 
-        Movie(String name, int prod_date) {
+        Movie(String name, Date prod_date) {
             this.name = name;
             this.prod_date = prod_date;
         }
@@ -50,16 +52,23 @@ public class PopcornApp {
             return this.name;
         }
 
-        public int getDate() //useful for sorting
+        public Date getDate() // useful for sorting
         {
             return this.prod_date;
         }
-    }
 
-    class Sortbyyear implements Comparator<Movie> {
-
-        public int compare(Movie a, Movie b) {
-            return a.getDate() - b.getDate();
+        @Override
+        public int compareTo(Movie o) {
+            if (getDate() == null || o.getDate() == null) {
+                return 0;
+            }
+            return getDate().compareTo(o.getDate());
         }
     }
+
+    /*
+     * class Sortbyyear implements Comparator<Movie> {
+     * 
+     * public int compare(Movie a, Movie b) { return a.getDate() - b.getDate(); } }
+     */
 }
