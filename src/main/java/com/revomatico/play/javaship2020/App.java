@@ -12,8 +12,11 @@ public class App {
         //VladMovieImporter vlad = new VladMovieImporter();
         //vlad.importmovies(app);
 
-        AncaMovieImporter anca = new AncaMovieImporter();
-        anca.movieImporter(app, path);
+//      AncaMovieImporter anca = new AncaMovieImporter();
+//      anca.movieImporter(app, path);
+
+        AndreeaMovieImporter andreea = new AndreeaMovieImporter();
+        app.setMovies(andreea.importeList());
 
         app.setMovies(app.sort_movie(app.listMovies()));
         app.print_Movies(app.listMovies());
