@@ -126,25 +126,6 @@ class CSVReader {
                         word.append(ch);
                         break;
                 }
-//                if (ch == QUOTE) {
-//                    inQuotes = true;
-//                    if (charsOfWord[0] != QUOTE) {
-//                        word.append(QUOTE);
-//                    }
-//                    if (startCollectChar) {
-//                        word.append(QUOTE);
-//                    }
-//                } else if (ch == SEPARATOR) {
-//                    words.add(word.toString());
-//                    word = new StringBuilder();
-//                    startCollectChar = false;
-//                } else if (ch == '\r') {
-//                    continue;
-//                } else if (ch == '\n') {
-//                    break;
-//                } else {
-//                    word.append(ch);
-//                }
             }
             if (br)
                 break;
