@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AndreeaMovieImporter {
-    public ArrayList<PopcornApp.Movie> importeList() {
-        ArrayList<PopcornApp.Movie> movieList = new ArrayList<>();
+    public ArrayList<Movie> importeList() {
+        ArrayList<Movie> movieList = new ArrayList<>();
         File csvFile = new File("./src/main/resources/WATCHLIST.csv");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 
@@ -20,7 +20,7 @@ public class AndreeaMovieImporter {
             while(readerLines.hasNextLine()) {
                 line = readerLines.nextLine();
                 String[] info = line.split(",");
-                movieList.add(new PopcornApp.Movie(info[5],
+                movieList.add(new Movie(info[5],
                         format.parse(info[info.length - 2])));
             }
             readerLines.close();

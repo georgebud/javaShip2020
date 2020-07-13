@@ -20,7 +20,7 @@ public class BogdanMovieImporter {
              //   int year = Integer.parseInt(movieProprieties[10]);
                 try{
                     Date date1=new SimpleDateFormat("mm/dd/yyyy").parse(movieProprieties[movieProprieties.length-2]);
-                    app.addMovie(new PopcornApp.Movie(movieProprieties[5], date1));
+                    app.addMovie(new Movie(movieProprieties[5], date1));
                 } catch(ParseException e)
                 {  //
                     int b;

@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class LucianMovieImporter {
+public class LucianMovieImporter implements MovieImporter {
   class Movie implements Comparable<Movie> {
     private String title;
     private float rating;
@@ -168,4 +168,8 @@ public class LucianMovieImporter {
     app.listMovies(path);
   }
 
+  @Override
+  public List<com.revomatico.play.javaship2020.Movie> importMovies(String path) {
+    throw new RuntimeException("Not implemented yet!!!");
+  }
 }

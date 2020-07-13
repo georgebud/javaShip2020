@@ -1,6 +1,7 @@
 package com.revomatico.play.javaship2020;
+
 import java.util.List;
-import com.revomatico.play.javaship2020.PopcornApp.Movie;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,29 +28,34 @@ public class PopcornAppTest {
   public void listMoviesSorted() {
     PopcornApp app = new PopcornApp();
 
-    VladMovieImporter vlad=new VladMovieImporter();
+    VladMovieImporter vlad = new VladMovieImporter();
     vlad.importmovies(app);
-    
+
     app.setMovies(app.sort_movie(app.listMovies()));
-   // app.setMovies(app.listMovies());
+    // app.setMovies(app.listMovies());
     app.print_Movies(app.listMovies());
-   // app.movies=sort_movie(app.listMovies());
+    // app.movies=sort_movie(app.listMovies());
 
   }
 
   @Test
   public void listMoviesSortedLaura() {
-    PopcornApp app = new PopcornApp();
+    testMyApplication(new PopcornApp(), new LauraMovieImporter());
+  }
 
-    LauraMovieImporter lauraMovieImporter = new LauraMovieImporter();
-    app.setMovies(lauraMovieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
+  @Test
+  public void listMoviesSortedAdrian() {
+    testMyApplication(new PopcornApp(), new AdrianMovieImporter());
+  }
+
+  private void testMyApplication(PopcornApp app, MovieImporter movieImporter) {
+    app.setMovies(movieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
     app.setMovies(app.sort_movie(app.listMovies()));
 
     List<Movie> movies = app.listMovies();
-    for(int i = 0; i < movies.size() - 1; i++)
+    for (int i = 0; i < movies.size() - 1; i++) {
       Assert.assertTrue(movies.get(i).compareTo(movies.get(i + 1)) <= 0); //check if the list is sorted
-    app.print_Movies(app.listMovies());   //print the movies
+    }
+    app.print_Movies(app.listMovies()); //print the movies
   }
-
-  
 }

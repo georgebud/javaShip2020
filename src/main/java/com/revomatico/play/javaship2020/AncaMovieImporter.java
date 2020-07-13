@@ -8,21 +8,21 @@ import java.util.Scanner;
 
 public class AncaMovieImporter {
 
-    public List<PopcornApp.Movie> movieImporter(PopcornApp app, String path) {
-        try {
-            Scanner file = new Scanner(new File(path));
-            file.nextLine(); // name of the columns
+  public List<Movie> movieImporter(PopcornApp app, String path) {
+    try {
+      Scanner file = new Scanner(new File(path));
+      file.nextLine(); // name of the columns
 
-            while (file.hasNextLine()) {
-                String line = file.nextLine();
-                String[] split = line.split(",");
-                app.addMovie(new PopcornApp.Movie(split[5],
-                            new Date(Integer.parseInt(split[10]))));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return app.listMovies();
+      while (file.hasNextLine()) {
+        String line = file.nextLine();
+        String[] split = line.split(",");
+        app.addMovie(new Movie(split[5],
+          new Date(Integer.parseInt(split[10]))));
+      }
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
     }
+
+    return app.listMovies();
+  }
 }

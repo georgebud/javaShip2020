@@ -5,7 +5,7 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
-import com.revomatico.play.javaship2020.PopcornApp.Movie;
+import com.revomatico.play.javaship2020.Movie;
 
 public class VladMovieImporter {
 
@@ -25,7 +25,7 @@ public class VladMovieImporter {
                 try {
                     Date year = format.parse(string_year);
                     String name = arrSplit[5];
-                    ap.addMovie(new PopcornApp.Movie(name, year));
+                    ap.addMovie(new Movie(name, year));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
