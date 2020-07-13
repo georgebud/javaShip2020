@@ -24,8 +24,8 @@ class Movie implements Comparable<Movie> {
 
   @Override
   public String toString() {
-    return "title='" + title + '\'' +
-        ", releaseDate=" + releaseDate;
+    return "title = '" + title + '\'' +
+        ", releaseDate = " + (releaseDate.getYear() + 1900);
   }
 
   //  @Override

@@ -13,10 +13,10 @@ public class App {
         //vlad.importmovies(app);
 
 //      AncaMovieImporter anca = new AncaMovieImporter();
-//      anca.movieImporter(app, path);
+//      app.setMovies(anca.importMovies(path));
 
-        AndreeaMovieImporter andreea = new AndreeaMovieImporter();
-        app.setMovies(andreea.importeList());
+//        AndreeaMovieImporter andreea = new AndreeaMovieImporter();
+//        app.setMovies(andreea.importeList());
 
         app.setMovies(app.sort_movie(app.listMovies()));
         app.print_Movies(app.listMovies());

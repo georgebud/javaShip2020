@@ -48,6 +48,11 @@ public class PopcornAppTest {
     testMyApplication(new PopcornApp(), new AdrianMovieImporter());
   }
 
+  @Test
+  public void listMoviesSortedAnca() {
+    testMyApplication(new PopcornApp(), new AncaMovieImporter());
+  }
+
   private void testMyApplication(PopcornApp app, MovieImporter movieImporter) {
     app.setMovies(movieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
     app.setMovies(app.sort_movie(app.listMovies()));
