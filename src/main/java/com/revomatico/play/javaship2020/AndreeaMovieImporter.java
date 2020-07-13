@@ -19,8 +19,9 @@ public class AndreeaMovieImporter {
 
             while(readerLines.hasNextLine()) {
                 line = readerLines.nextLine();
-                String info[] = line.split(",");
-                movieList.add(new PopcornApp.Movie(info[5], format.parse(info[info.length - 2])));
+                String[] info = line.split(",");
+                movieList.add(new PopcornApp.Movie(info[5],
+                        format.parse(info[info.length - 2])));
             }
             readerLines.close();
             return movieList;
