@@ -10,13 +10,13 @@ import java.util.Scanner;
 
 public class AndreeaMovieImporter {
     public ArrayList<PopcornApp.Movie> importeList() {
+        ArrayList<PopcornApp.Movie> movieList = new ArrayList<>();
+        File csvFile = new File("./src/main/resources/WATCHLIST.csv");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+
         try {
-            ArrayList<PopcornApp.Movie> movieList = new ArrayList<>();
-            File csvFile = new File("./src/main/resources/WATCHLIST.csv");
             Scanner readerLines = new Scanner(csvFile);
             String line = readerLines.nextLine();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-
             while(readerLines.hasNextLine()) {
                 line = readerLines.nextLine();
                 String[] info = line.split(",");
@@ -24,13 +24,12 @@ public class AndreeaMovieImporter {
                         format.parse(info[info.length - 2])));
             }
             readerLines.close();
-            return movieList;
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }  catch (ParseException e) {
                 e.printStackTrace();
         }
-        return null;
+        return movieList;
     }
 }
