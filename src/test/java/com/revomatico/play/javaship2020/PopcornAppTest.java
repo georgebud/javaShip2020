@@ -62,6 +62,12 @@ public class PopcornAppTest {
     app.print_Movies(app.listMovies());
 
   }
+  
+  @Test
+  public void listMoviesSortedAntonia() {
+    testMyApplication(new PopcornApp(), new AntoniaMovieImporter());
+  }
+
 
   private void testMyApplication(PopcornApp app, MovieImporter movieImporter) {
     app.setMovies(movieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
