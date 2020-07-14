@@ -6,27 +6,28 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class BogdanMovieImporter {
+public class BogdanMovieImporter implements MovieImporter {
 
-    public void importAllFrom(String path, PopcornApp app) {
+    @Override
+    public List<Movie> importMovies(String path) {
+        List<Movie> movies = new ArrayList<Movie>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
             while (line != null) {
                 String[] movieProprieties = line.split(",");
 
-             //   int year = Integer.parseInt(movieProprieties[10]);
                 try{
-                    Date date1=new SimpleDateFormat("mm/dd/yyyy").parse(movieProprieties[movieProprieties.length-2]);
-                    app.addMovie(new Movie(movieProprieties[5], date1));
-                } catch(ParseException e)
-                {  //
-                    int b;
+                    Date date=new SimpleDateFormat("mm/dd/yyyy").parse(movieProprieties[movieProprieties.length-2]);
+                    movies.add(new Movie(movieProprieties[5], date));
+                } catch(ParseException e) {
                     e.printStackTrace();
                 }
-               
+
                 line = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {
@@ -34,5 +35,6 @@ public class BogdanMovieImporter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return movies;
     }
 }
