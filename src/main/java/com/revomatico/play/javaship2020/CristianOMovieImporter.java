@@ -66,7 +66,7 @@ public class CristianOMovieImporter implements MovieImporter {
     public int getIndex(String path, String field) {
         int result = 0;
 
-        try (FileReader reader = new FileReader(path)){
+        try (FileReader reader = new FileReader(path)) {
 
             CSVReader csvReader = new CSVReader(reader);
             String[] nextData;
@@ -75,8 +75,11 @@ public class CristianOMovieImporter implements MovieImporter {
                 for (String cell : nextData) {
                     if (cell.equalsIgnoreCase(field)) {
                         result = Arrays.asList(nextData).indexOf(cell);
+                        break;
                     }
+
                 }
+                break;
             }
 
         } catch (IOException | CsvValidationException e) {
