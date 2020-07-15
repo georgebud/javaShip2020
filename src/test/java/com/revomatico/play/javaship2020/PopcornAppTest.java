@@ -5,8 +5,6 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import jdk.jfr.Timestamp;
-
 //import main.java.com.revomatico.play.javaship2020.VladMovieImporter;
 
 public class PopcornAppTest {
@@ -25,20 +23,20 @@ public class PopcornAppTest {
     List<Movie> movies = app.listMovies();
     Assert.assertEquals(1, movies.size());
   }
-
-  @Test
-  public void listMoviesSorted() {
-    PopcornApp app = new PopcornApp();
-
-    VladMovieImporter vlad = new VladMovieImporter();
-    vlad.importmovies(app);
-
-    app.setMovies(app.sort_movie(app.listMovies()));
-    // app.setMovies(app.listMovies());
-    app.print_Movies(app.listMovies());
-    // app.movies=sort_movie(app.listMovies());
-
-  }
+  //
+  //  @Test
+  //  public void listMoviesSorted() {
+  //    PopcornApp app = new PopcornApp();
+  //
+  //    VladMovieImporter vlad = new VladMovieImporter();
+  //    vlad.importMovies(app);
+  //
+  //    app.setMovies(app.sort_movie(app.listMovies()));
+  //    // app.setMovies(app.listMovies());
+  //    app.print_Movies(app.listMovies());
+  //    // app.movies=sort_movie(app.listMovies());
+  //
+  //  }
 
   @Test
   public void listMoviesSortedLaura() {
@@ -69,12 +67,12 @@ public class PopcornAppTest {
     app.print_Movies(app.listMovies());
 
   }
-  
+
   @Test
   public void listMoviesSortedRobertTest() {
     testMyApplication(new PopcornApp(), new RobertMovieImporter());
   }
-  
+
   @Test
   public void listMoviesSortedAntonia() {
     testMyApplication(new PopcornApp(), new AntoniaMovieImporter());
@@ -84,11 +82,11 @@ public class PopcornAppTest {
   public void listMoviesSortedGeorge() {
     testMyApplication(new PopcornApp(), new GeorgeMovieImporter());
   }
+
   @Test
 
-  public void listMoviesSortedVladB()
-  {
-    testMyApplicaton(new PopcornApp(), new VladMovieImporter());
+  public void listMoviesSortedVladB() {
+    testMyApplication(new PopcornApp(), new VladMovieImporter());
   }
 
   @Test
