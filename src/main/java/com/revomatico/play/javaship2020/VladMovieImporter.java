@@ -14,8 +14,7 @@ public class VladMovieImporter implements MovieImporter {
   public List<Movie> importMovies(String path) {
     PopcornApp app = new PopcornApp();
 
-    try {
-      Scanner buff = new Scanner(new File(path));
+    try (Scanner buff = new Scanner(new File(path))) {
       String entire_line = buff.nextLine();// we have column name on the first row
       entire_line = buff.nextLine();
       SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd"); // Date format used in date parsing
@@ -35,9 +34,8 @@ public class VladMovieImporter implements MovieImporter {
         entire_line = buff.nextLine();
 
       }
-
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
     return app.listMovies();
   }
