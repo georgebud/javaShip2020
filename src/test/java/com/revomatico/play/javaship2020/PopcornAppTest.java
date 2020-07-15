@@ -5,6 +5,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import jdk.jfr.Timestamp;
+
 //import main.java.com.revomatico.play.javaship2020.VladMovieImporter;
 
 public class PopcornAppTest {
@@ -76,6 +78,12 @@ public class PopcornAppTest {
   @Test
   public void listMoviesSortedGeorge() {
     testMyApplication(new PopcornApp(), new GeorgeMovieImporter());
+  }
+  @Test
+
+  public void listMoviesSortedVladB()
+  {
+    testMyApplicaton(new PopcornApp(), new VladMovieImporter());
   }
 
   @Test

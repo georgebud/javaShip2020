@@ -7,10 +7,11 @@ import java.util.Date;
 import java.text.ParseException;
 import com.revomatico.play.javaship2020.Movie;
 
-public class VladMovieImporter {
+public class VladMovieImporter implements MovieImporter {
 
-    public void importmovies(PopcornApp ap) {
-        String path = "./src/main/resources/WATCHLIST.csv";
+    public List<Movie> importMovies(String path) {
+        PopcornApp app = new PopcornApp();
+
         try {
             Scanner buff = new Scanner(new File(path));
             String entire_line = buff.nextLine();// we have column name on the first row
@@ -25,7 +26,7 @@ public class VladMovieImporter {
                 try {
                     Date year = format.parse(string_year);
                     String name = arrSplit[5];
-                    ap.addMovie(new Movie(name, year));
+                    app.addMovie(new Movie(name, year));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -36,6 +37,7 @@ public class VladMovieImporter {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return app.listMovies();
     }
 
     /*
