@@ -54,7 +54,12 @@ public class PopcornAppTest {
   public void listMoviesSortedAnca() {
     testMyApplication(new PopcornApp(), new AncaMovieImporter());
   }
-  
+
+  @Test
+  public void listMoviesSortedAndreea() {
+    testMyApplication(new PopcornApp(), new AndreeaMovieImporter());
+  }
+
   @Test
   public void listMoviesSortedRobert() {
     PopcornApp app = new PopcornApp();
