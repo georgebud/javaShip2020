@@ -45,13 +45,6 @@ public class AdrianMovieImporter implements MovieImporter {
 
     return movies;
   }
-
-  public static void main(String[] args) throws FileNotFoundException, ParseException {
-    String path = "/home/adrian/Documents/javaShip2020/src/main/resources/WATCHLIST.csv";
-    AdrianMovieImporter a = new AdrianMovieImporter();
-    List<Movie> movies = a.readMovies(path);
-    System.out.println(movies);
-  }
 }
 
 class CSVReader {

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class AncaMovieImporter implements MovieImporter{
+public class AncaMovieImporter implements MovieImporter {
 
   @Override
   public List<Movie> importMovies(String path) {
@@ -20,7 +20,7 @@ public class AncaMovieImporter implements MovieImporter{
         String line = file.nextLine();
         String[] split = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
         app.addMovie(new Movie(split[5],
-                new Date(Integer.parseInt(split[10]))));
+          new Date(Long.parseLong(split[10]))));
       }
       file.close();
     } catch (FileNotFoundException e) {

@@ -142,7 +142,7 @@ public class LucianMovieImporter implements MovieImporter {
     Scanner scanner = new Scanner(new File(filePath));
     scanner.nextLine(); //Skipping the first line, which contains the column names
     List<Movie> movieList = new ArrayList<>();
-    SimpleDateFormat format = new SimpleDateFormat("mm/dd/yyyy"); //Date format used in date parsing
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd"); //Date format used in date parsing
 
     while (scanner.hasNext()) {
       List<String> line = CSVUtils.parseLine(scanner.nextLine());
@@ -160,12 +160,6 @@ public class LucianMovieImporter implements MovieImporter {
 
     Collections.sort(movieList); //Sorting the movies
     System.out.println(movieList);
-  }
-
-  public static void main(String[] args) throws FileNotFoundException, ParseException {
-    String path = "C:\\Users\\ilies\\OneDrive\\Desktop\\WATCHLIST.csv";
-    LucianMovieImporter app = new LucianMovieImporter();
-    app.listMovies(path);
   }
 
   @Override
