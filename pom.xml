@@ -9,8 +9,8 @@
   <version>0.1-SNAPSHOT</version>
 
   <name>popcorn</name>
-
-  <url>https://github.com/revomatico/javaShip2020</url>
+  <!-- FIXME change it to the project's website -->
+  <url>https://github.com/revomatico-play/mySecretWorlDominationHome1</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,6 +18,19 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.7</version>
+      <scope>test</scope>
+    </dependency>
+	   <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>5.2</version>
+    </dependency>
+  </dependencies>
 
 
   <build>
@@ -31,7 +44,7 @@
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>4.0.0</version>
+          <version>3.0.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -65,27 +78,4 @@
       </plugins>
     </pluginManagement>
   </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>com.opencsv</groupId>
-      <artifactId>opencsv</artifactId>
-      <version>5.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.7</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-csv</artifactId>
-      <version>1.5</version>
-    </dependency>
-
-
-  </dependencies>
 </project>
