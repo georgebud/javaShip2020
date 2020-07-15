@@ -11,8 +11,7 @@ public class AncaMovieImporter implements MovieImporter {
 
   @Override
   public List<Movie> importMovies(String path) {
-    ArrayList<Movie> movieList = new ArrayList<>();
-
+    ArrayList<Movie> movies = new ArrayList<>();
     try {
       Scanner file = new Scanner(new File(path));
       file.nextLine(); // name of the columns
@@ -20,7 +19,7 @@ public class AncaMovieImporter implements MovieImporter {
       while (file.hasNextLine()) {
         String line = file.nextLine();
         String[] split = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        movieList.add(new Movie(split[5],
+        movies.add(new Movie(split[5],
           new Date(Long.parseLong(split[10]))));
       }
       file.close();
@@ -28,6 +27,6 @@ public class AncaMovieImporter implements MovieImporter {
       e.printStackTrace();
     }
 
-    return movieList;
+    return movies;
   }
 }
