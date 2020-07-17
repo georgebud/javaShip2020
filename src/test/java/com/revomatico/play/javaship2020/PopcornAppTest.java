@@ -7,8 +7,6 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-//import main.java.com.revomatico.play.javaship2020.VladMovieImporter;
-
 public class PopcornAppTest {
   @Test
   public void popcornAppShouldExist() {
@@ -41,11 +39,6 @@ public class PopcornAppTest {
   }
 
   @Test
-  public void listMoviesSortedAnca() {
-    testMyApplication(new PopcornApp(), new AncaMovieImporter());
-  }
-
-  @Test
   public void listMoviesSortedAndreea() {
     testMyApplication(new PopcornApp(), new AndreeaMovieImporter());
   }
@@ -75,13 +68,6 @@ public class PopcornAppTest {
     PopcornApp app = new PopcornApp();
     AntoniaMovieImporter movieImporter = new AntoniaMovieImporter();
     app.setMovies(movieImporter.importMovies(null));
-  }
-
-  @Test
-  public void testFullCoverageAnca() {
-    AncaMovieImporter movieImporter = new AncaMovieImporter();
-    assertThatThrownBy(() -> movieImporter.importMovies("movies-inexistent-file.csv"
-            + "smth")).isInstanceOf(RuntimeException.class);
   }
 
   @Test
