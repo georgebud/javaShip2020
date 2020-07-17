@@ -77,6 +77,23 @@ public class PopcornAppTest {
   public void listMoviesSortedAntonia() {
     testMyApplication(new PopcornApp(), new AntoniaMovieImporter());
   }
+  
+  @Test(expected = NullPointerException.class)
+  public void testForFullCoverageAntonia() {
+	  PopcornApp app=new PopcornApp();
+	  AntoniaMovieImporter movieImporter = null;
+	  
+	  app.setMovies(movieImporter.importMovies("C:/Users/Depanero/Desktop/movies.csv"));
+}
+  
+  @Test
+  public void testFullCoverageAntonia2() {
+	  AntoniaMovieImporter movieImporter=new AntoniaMovieImporter();
+	  assertThrows(RuntimeException.class, () -> {
+		  movieImporter.importMovies("C:/Users/Depanero/Desktop/movies.csv"+"smth");
+	    });
+  }
+
 
   @Test
   public void listMoviesSortedGeorge() {
