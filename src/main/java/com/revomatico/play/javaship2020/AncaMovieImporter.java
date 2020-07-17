@@ -1,6 +1,7 @@
 package com.revomatico.play.javaship2020;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +23,7 @@ public class AncaMovieImporter implements MovieImporter {
                 new Date(Long.parseLong(split[10]))));
       }
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      throw new RuntimeException("When trying to import movies from [" + path + "]", e);
     }
 
     return movies;

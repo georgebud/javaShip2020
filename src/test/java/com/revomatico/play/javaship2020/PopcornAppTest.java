@@ -25,20 +25,6 @@ public class PopcornAppTest {
     List<Movie> movies = app.listMovies();
     Assert.assertEquals(1, movies.size());
   }
-  //
-  //  @Test
-  //  public void listMoviesSorted() {
-  //    PopcornApp app = new PopcornApp();
-  //
-  //    VladMovieImporter vlad = new VladMovieImporter();
-  //    vlad.importMovies(app);
-  //
-  //    app.setMovies(app.sort_movie(app.listMovies()));
-  //    // app.setMovies(app.listMovies());
-  //    app.print_Movies(app.listMovies());
-  //    // app.movies=sort_movie(app.listMovies());
-  //
-  //  }
 
   @Test
   public void listMoviesSortedBianca() { testMyApplication(new PopcornApp(), new BiancaMovieImporter());
@@ -92,11 +78,17 @@ public class PopcornAppTest {
   }
 
   @Test
+  public void testFullCoverageAnca() {
+    AncaMovieImporter movieImporter = new AncaMovieImporter();
+    assertThatThrownBy(() -> movieImporter.importMovies("movies-inexistent-file.csv"
+            + "smth")).isInstanceOf(RuntimeException.class);
+  }
+
+  @Test
   public void testFullCoverageAntonia2() {
     AntoniaMovieImporter movieImporter = new AntoniaMovieImporter();
-    assertThatThrownBy(() -> {
-      movieImporter.importMovies("movies-inexistent-file.csv" + "smth");
-    }).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(() -> movieImporter.importMovies("movies-inexistent-file.csv"
+            + "smth")).isInstanceOf(RuntimeException.class);
   }
 
   @Test
