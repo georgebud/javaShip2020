@@ -5,18 +5,92 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 >
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.raisercostin</groupId>
+    <artifactId>maven-defaults-raisercostin</artifactId>
+    <version>1.13</version>
+  </parent>
   <groupId>com.revomatico.play.javaship2020</groupId>
   <artifactId>popcorn</artifactId>
   <version>0.1-SNAPSHOT</version>
   <name>popcorn</name>
-  <!-- FIXME change it to the project's website -->
-  <url>https://github.com/revomatico-play/mySecretWorlDominationHome1</url>
+  <url>https://github.com/revomatico/javaShip2020.git</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://tldrlegal.com/license/mit-license</url>
+    </license>
+  </licenses>
+
   <dependencies>
+    <dependency>
+      <groupId>org.raisercostin</groupId>
+      <artifactId>jedio</artifactId>
+      <version>0.40</version>
+    </dependency>
+    <dependency>
+      <groupId>org.raisercostin</groupId>
+      <artifactId>jedi-nodes-java</artifactId>
+      <version>0.11</version>
+    </dependency>
+    <dependency>
+      <groupId>io.vavr</groupId>
+      <artifactId>vavr</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.typesafe</groupId>
+      <artifactId>config</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+
+
     <dependency>
       <groupId>com.opencsv</groupId>
       <artifactId>opencsv</artifactId>
@@ -39,6 +113,7 @@
       <version>3.16.1</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

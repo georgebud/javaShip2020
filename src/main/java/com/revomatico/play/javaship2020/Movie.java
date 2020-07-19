@@ -2,7 +2,7 @@ package com.revomatico.play.javaship2020;
 
 import java.util.Date;
 
-class Movie implements Comparable<Movie> {
+public class Movie implements Comparable<Movie> {
   private String title;
   private Date releaseDate;
 
