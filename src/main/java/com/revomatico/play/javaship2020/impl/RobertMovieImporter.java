@@ -14,31 +14,31 @@ import java.text.SimpleDateFormat;
 
 public class RobertMovieImporter implements MovieImporter {
 
-	@Override
+  @Override
   public List<Movie> importMovies(String path) {
-		
+    
     ArrayList<Movie> movieList = new ArrayList<Movie>();
-		
-	try {
-	  File fileRead = new File(path);
-	  Scanner reader = new Scanner(fileRead);
-	  String data = reader.nextLine();
-	  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	  while (reader.hasNextLine()) {
-	    data = reader.nextLine();
-		String[] splitData = data.split(",");
-		
-		movieList.add(new Movie(splitData[5], dateFormat.parse(splitData[splitData.length - 2])));
-	  }
-	  reader.close();
-	} catch (FileNotFoundException | ParseException e) {
+    
+  try {
+    File fileRead = new File(path);
+    Scanner reader = new Scanner(fileRead);
+    String data = reader.nextLine();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    while (reader.hasNextLine()) {
+      data = reader.nextLine();
+    String[] splitData = data.split(",");
+    
+    movieList.add(new Movie(splitData[5], dateFormat.parse(splitData[splitData.length - 2])));
+    }
+    reader.close();
+  } catch (FileNotFoundException | ParseException e) {
         System.out.println("An error occurred.");
-		e.printStackTrace();
-	}
-		
-	return movieList;
-	}
-	
-	
+    e.printStackTrace();
+  }
+    
+  return movieList;
+  }
+  
+  
 
 }
