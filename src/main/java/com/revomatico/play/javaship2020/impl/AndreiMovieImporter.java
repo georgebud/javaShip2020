@@ -14,24 +14,24 @@ import java.util.Scanner;
 import com.revomatico.play.javaship2020.Movie;
 import com.revomatico.play.javaship2020.MovieImporter;
 
-public class AndreiMovieImporter implements MovieImporter{
+public class AndreiMovieImporter implements MovieImporter {
 
   @Override
   public List<Movie> importMovies(String path) {
-      ArrayList<Movie> AndreiArray = new ArrayList<>();
-      DateFormat date = new SimpleDateFormat("yyyy");
-      try(Scanner csvReader= new Scanner(new File(path), String.valueOf(StandardCharsets.UTF_8))) {
-          csvReader.nextLine();
-          while (csvReader.hasNextLine()) {
-              String csvReaderLine = csvReader.nextLine();
-              String[] bufferSplit = csvReaderLine.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-              Date movieDate = date.parse(bufferSplit[10]);
-              AndreiArray.add(new Movie(bufferSplit[5], movieDate));
-          }
-          csvReader.close();
-      } catch (IOException | ParseException e) {
-          throw new RuntimeException("When trying to importMovies from [" + path + "]", e);
+    ArrayList<Movie> AndreiArray = new ArrayList<>();
+    DateFormat date = new SimpleDateFormat("yyyy");
+    try (Scanner csvReader = new Scanner(new File(path), String.valueOf(StandardCharsets.UTF_8))) {
+      csvReader.nextLine();
+      while (csvReader.hasNextLine()) {
+        String csvReaderLine = csvReader.nextLine();
+        String[] bufferSplit = csvReaderLine.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        Date movieDate = date.parse(bufferSplit[10]);
+        AndreiArray.add(new Movie(bufferSplit[5], movieDate));
       }
-      return AndreiArray;
+      csvReader.close();
+    } catch (IOException | ParseException e) {
+      throw new RuntimeException("When trying to importMovies from [" + path + "]", e);
     }
+    return AndreiArray;
+  }
 }
