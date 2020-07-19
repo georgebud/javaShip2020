@@ -1,7 +1,12 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
+
+import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.PopcornApp;
+import com.revomatico.play.javaship2020.impl.AncaMovieImporter;
 import org.junit.Assert;
 import org.junit.Test;
 

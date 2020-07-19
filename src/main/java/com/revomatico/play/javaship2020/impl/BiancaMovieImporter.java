@@ -1,4 +1,4 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import java.io.File;
 import java.io.FileReader;
@@ -7,6 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.MovieImporter;
 
 public class BiancaMovieImporter implements MovieImporter {
     @Override

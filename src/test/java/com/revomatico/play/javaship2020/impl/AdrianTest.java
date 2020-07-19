@@ -1,9 +1,11 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.List;
 
+import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.impl.AdrianMovieImporter;
 import org.junit.Test;
 
 public class AdrianTest {

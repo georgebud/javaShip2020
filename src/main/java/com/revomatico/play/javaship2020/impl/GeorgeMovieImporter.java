@@ -1,4 +1,4 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.MovieImporter;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

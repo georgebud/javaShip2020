@@ -1,4 +1,4 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,6 +7,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.PopcornApp;
 
 public class VladMovieImporter implements MovieImporter {
 

@@ -1,9 +1,22 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
+import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.PopcornApp;
+import com.revomatico.play.javaship2020.impl.AdrianMovieImporter;
+import com.revomatico.play.javaship2020.impl.AndreeaMovieImporter;
+import com.revomatico.play.javaship2020.impl.AndreiMovieImporter;
+import com.revomatico.play.javaship2020.impl.AntoniaMovieImporter;
+import com.revomatico.play.javaship2020.impl.BiancaMovieImporter;
+import com.revomatico.play.javaship2020.impl.CristianOMovieImporter;
+import com.revomatico.play.javaship2020.impl.GeorgeMovieImporter;
+import com.revomatico.play.javaship2020.impl.LauraMovieImporter;
+import com.revomatico.play.javaship2020.impl.RobertMovieImporter;
+import com.revomatico.play.javaship2020.impl.VladMovieImporter;
 import org.junit.Assert;
 import org.junit.Test;
 

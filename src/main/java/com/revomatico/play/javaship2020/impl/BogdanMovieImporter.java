@@ -1,4 +1,4 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.MovieImporter;
 
 public class BogdanMovieImporter implements MovieImporter {
 

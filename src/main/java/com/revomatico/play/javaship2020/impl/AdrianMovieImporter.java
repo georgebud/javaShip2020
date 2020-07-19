@@ -1,4 +1,4 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,10 +11,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.MovieImporter;
+
 public class AdrianMovieImporter implements MovieImporter {
 
   @Override
-  public List<com.revomatico.play.javaship2020.Movie> importMovies(String path) {
+  public List<Movie> importMovies(String path) {
     try {
       return readMovies(path);
     } catch (FileNotFoundException | ParseException e) {
