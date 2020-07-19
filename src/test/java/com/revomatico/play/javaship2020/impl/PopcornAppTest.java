@@ -1,5 +1,6 @@
 package com.revomatico.play.javaship2020.impl;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -7,26 +8,15 @@ import java.util.List;
 import com.revomatico.play.javaship2020.Movie;
 import com.revomatico.play.javaship2020.MovieImporter;
 import com.revomatico.play.javaship2020.PopcornApp;
-import com.revomatico.play.javaship2020.impl.AdrianMovieImporter;
-import com.revomatico.play.javaship2020.impl.AndreeaMovieImporter;
-import com.revomatico.play.javaship2020.impl.AndreiMovieImporter;
-import com.revomatico.play.javaship2020.impl.AntoniaMovieImporter;
-import com.revomatico.play.javaship2020.impl.BiancaMovieImporter;
-import com.revomatico.play.javaship2020.impl.CristianOMovieImporter;
-import com.revomatico.play.javaship2020.impl.GeorgeMovieImporter;
-import com.revomatico.play.javaship2020.impl.LauraMovieImporter;
-import com.revomatico.play.javaship2020.impl.RobertMovieImporter;
-import com.revomatico.play.javaship2020.impl.VladMovieImporter;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PopcornAppTest {
   @Test
   public void popcornAppShouldExist() {
     PopcornApp app = new PopcornApp();
     List<Movie> movies = app.listMovies();
-    Assert.assertNotNull(movies);
-    Assert.assertEquals(0, movies.size());
+    assertThat(movies).isNotNull();
+    assertThat(movies.size()).isEqualTo(0);
   }
 
   @Test
@@ -34,11 +24,12 @@ public class PopcornAppTest {
     PopcornApp app = new PopcornApp();
     app.addMovie(new Movie());
     List<Movie> movies = app.listMovies();
-    Assert.assertEquals(1, movies.size());
+    assertThat(movies.size()).isEqualTo(1);
   }
 
   @Test
-  public void listMoviesSortedBianca() { testMyApplication(new PopcornApp(), new BiancaMovieImporter());
+  public void listMoviesSortedBianca() {
+    testMyApplication(new PopcornApp(), new BiancaMovieImporter());
   }
 
   @Test
@@ -81,18 +72,18 @@ public class PopcornAppTest {
     testMyApplication(new PopcornApp(), new AntoniaMovieImporter());
   }
 
-  @Test(expected = NullPointerException.class)
+  @Test
   public void testForFullCoverageAntonia() {
     PopcornApp app = new PopcornApp();
     AntoniaMovieImporter movieImporter = new AntoniaMovieImporter();
-    app.setMovies(movieImporter.importMovies(null));
+    assertThatThrownBy(() -> app.setMovies(movieImporter.importMovies(null))).isInstanceOf(NullPointerException.class);
   }
 
   @Test
   public void testFullCoverageAntonia2() {
     AntoniaMovieImporter movieImporter = new AntoniaMovieImporter();
     assertThatThrownBy(() -> movieImporter.importMovies("movies-inexistent-file.csv"
-            + "smth")).isInstanceOf(RuntimeException.class);
+        + "smth")).isInstanceOf(RuntimeException.class);
   }
 
   @Test
@@ -117,7 +108,7 @@ public class PopcornAppTest {
 
     List<Movie> movies = app.listMovies();
     for (int i = 0; i < movies.size() - 1; i++) {
-      Assert.assertTrue(movies.get(i).compareTo(movies.get(i + 1)) <= 0); //check if the list is sorted
+      assertThat(movies.get(i).compareTo(movies.get(i + 1)) <= 0).isTrue(); //check if the list is sorted
     }
     app.print_Movies(app.listMovies()); //print the movies
   }

@@ -5,8 +5,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.impl.AdrianMovieImporter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AdrianTest {
   @Test

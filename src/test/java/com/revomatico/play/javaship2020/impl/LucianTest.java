@@ -3,8 +3,7 @@ package com.revomatico.play.javaship2020.impl;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 
-import com.revomatico.play.javaship2020.impl.LucianMovieImporter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LucianTest {
   @Test
