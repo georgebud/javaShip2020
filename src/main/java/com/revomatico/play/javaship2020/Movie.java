@@ -28,6 +28,14 @@ public class Movie implements Comparable<Movie> {
         ", releaseDate = " + (releaseDate.getYear() + 1900);
   }
 
+  public String getTitle() {
+    return title;
+  }
+
+  public Date getReleaseDate() {
+    return releaseDate;
+  }
+
   //  @Override
   //  public int compareTo(Movie o) {
   //    if (getDate() == null || o.getDate() == null) {
