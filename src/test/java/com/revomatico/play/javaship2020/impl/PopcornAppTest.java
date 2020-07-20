@@ -3,6 +3,7 @@ package com.revomatico.play.javaship2020.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Date;
 import java.util.List;
 
 import com.revomatico.play.javaship2020.Movie;
@@ -17,6 +18,7 @@ public class PopcornAppTest {
     List<Movie> movies = app.listMovies();
     assertThat(movies).isNotNull();
     assertThat(movies.size()).isEqualTo(0);
+    assertThat(movies).describedAs("the list should always have star trek").contains(new Movie("star", new Date()));
   }
 
   @Test

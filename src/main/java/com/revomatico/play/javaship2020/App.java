@@ -18,7 +18,9 @@ public class App {
     //        AndreeaMovieImporter andreea = new AndreeaMovieImporter();
     //        app.setMovies(andreea.importeList());
 
-    app.setMovies(app.sort_movie(app.listMovies()));
-    app.print_Movies(app.listMovies());
+    app.
+    setMovies(app.sort_movie(app.listMovies()));
+    app.
+    print_Movies(app.listMovies());
   }
 }
