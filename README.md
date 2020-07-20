@@ -11,5 +11,6 @@ Movie wish list &amp; fetchPlay - music playlist
 - [ ] git
 
 # Development
+- mvn spring-boot:run - running spring REST API (go to http://localhost:8000/movies)
 - mvn antrun:run - cleans end of lines to linux style
 - mvn validate - reformats code according to standards
