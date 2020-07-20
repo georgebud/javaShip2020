@@ -18,7 +18,6 @@ public class PopcornAppTest {
     List<Movie> movies = app.listMovies();
     assertThat(movies).isNotNull();
     assertThat(movies.size()).isEqualTo(0);
-    assertThat(movies).describedAs("the list should always have star trek").contains(new Movie("star", new Date()));
   }
 
   @Test
