@@ -29,7 +29,7 @@ public class AncaTest {
 
   @Test
   public void listMoviesSortedAnca() {
-    testMyApplication(new PopcornApp(), new AncaMovieImporter());
+    PopcornAppTest.testMyApplication(new PopcornApp(), new AncaMovieImporter());
   }
 
   @Test
@@ -37,17 +37,5 @@ public class AncaTest {
     AncaMovieImporter movieImporter = new AncaMovieImporter();
     assertThatThrownBy(() -> movieImporter.importMovies("movies-inexistent-file.csv"
         + "smth")).isInstanceOf(RuntimeException.class);
-  }
-
-  private void testMyApplication(PopcornApp app, MovieImporter movieImporter) {
-    app.setMovies(movieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
-    app.setMovies(app.sort_movie(app.listMovies()));
-
-    List<Movie> movies = app.listMovies();
-    for (int i = 0; i < movies.size() - 1; i++) {
-      //check if the list is sorted
-      assertThat(movies.get(i).compareTo(movies.get(i + 1)) <= 0).isTrue();
-    }
-    app.print_Movies(app.listMovies()); //print the movies
   }
 }

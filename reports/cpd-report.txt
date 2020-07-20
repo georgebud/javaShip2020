@@ -1,9 +1,6 @@
-Found a 15 line (109 tokens) duplication in the following files: 
-Starting at line 39 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AncaTest.java
-Starting at line 102 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
-
-        + "smth")).isInstanceOf(RuntimeException.class);
-  }
+Found a 12 line (106 tokens) duplication in the following files: 
+Starting at line 42 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AncaTest.java
+Starting at line 107 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
 
   private void testMyApplication(PopcornApp app, MovieImporter movieImporter) {
     app.setMovies(movieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
@@ -18,29 +15,9 @@ Starting at line 102 of D:\home\raiser\work\internship\popcorn\src\test\java\com
   }
 }
 =====================================================================
-Found a 14 line (108 tokens) duplication in the following files: 
-Starting at line 39 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AncaTest.java
-Starting at line 28 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AndreeaTest.java
-Starting at line 102 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
-
-        + "smth")).isInstanceOf(RuntimeException.class);
-  }
-
-  private void testMyApplication(PopcornApp app, MovieImporter movieImporter) {
-    app.setMovies(movieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
-    app.setMovies(app.sort_movie(app.listMovies()));
-
-    List<Movie> movies = app.listMovies();
-    for (int i = 0; i < movies.size() - 1; i++) {
-      //check if the list is sorted
-      assertThat(movies.get(i).compareTo(movies.get(i + 1)) <= 0).isTrue();
-    }
-    app.print_Movies(app.listMovies()); //print the movies
-  }
-=====================================================================
-Found a 19 line (102 tokens) duplication in the following files: 
+Found a 16 line (98 tokens) duplication in the following files: 
 Starting at line 13 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AncaTest.java
-Starting at line 13 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
+Starting at line 13 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AndreeaTest.java
 
 public class AncaTest {
   @Test
@@ -48,6 +25,21 @@ public class AncaTest {
     PopcornApp app = new PopcornApp();
     List<Movie> movies = app.listMovies();
     assertThat(movies).isNotNull();
+    assertThat(movies.size()).isEqualTo(0);
+  }
+
+  @Test
+  public void listMovies() {
+    PopcornApp app = new PopcornApp();
+    app.addMovie(new Movie());
+    List<Movie> movies = app.listMovies();
+    assertThat(movies.size()).isEqualTo(1);
+  }
+=====================================================================
+Found a 13 line (55 tokens) duplication in the following files: 
+Starting at line 19 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AncaTest.java
+Starting at line 21 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
+
     assertThat(movies.size()).isEqualTo(0);
   }
 
@@ -62,17 +54,10 @@ public class AncaTest {
   @Test
   public void listMoviesSortedAnca() {
 =====================================================================
-Found a 16 line (98 tokens) duplication in the following files: 
-Starting at line 13 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AncaTest.java
-Starting at line 13 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AndreeaTest.java
-Starting at line 13 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
+Found a 10 line (51 tokens) duplication in the following files: 
+Starting at line 20 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AndreeaTest.java
+Starting at line 21 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
 
-public class AncaTest {
-  @Test
-  public void popcornAppShouldExist() {
-    PopcornApp app = new PopcornApp();
-    List<Movie> movies = app.listMovies();
-    assertThat(movies).isNotNull();
     assertThat(movies.size()).isEqualTo(0);
   }
 
@@ -84,20 +69,18 @@ public class AncaTest {
     assertThat(movies.size()).isEqualTo(1);
   }
 =====================================================================
-Found a 10 line (29 tokens) duplication in the following files: 
-Starting at line 39 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AndreeaTest.java
-Starting at line 47 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
+Found a 7 line (48 tokens) duplication in the following files: 
+Starting at line 13 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AncaTest.java
+Starting at line 13 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AndreeaTest.java
+Starting at line 14 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
 
-    app.print_Movies(app.listMovies()); //print the movies
-  }
-
+public class AncaTest {
   @Test
-  public void listMoviesSortedAndreea() {
-    testMyApplication(new PopcornApp(), new AndreeaMovieImporter());
-  }
-
-  @Test
-  public void notAFileException() {
+  public void popcornAppShouldExist() {
+    PopcornApp app = new PopcornApp();
+    List<Movie> movies = app.listMovies();
+    assertThat(movies).isNotNull();
+    assertThat(movies.size()).isEqualTo(0);
 =====================================================================
 Found a 5 line (28 tokens) duplication in the following files: 
 Starting at line 14 of D:\home\raiser\work\internship\popcorn\src\main\java\com\revomatico\play\javaship2020\impl\AncaMovieImporter.java
@@ -118,9 +101,24 @@ public class GeorgeMovieImporter implements MovieImporter {
   public List<Movie> importMovies(String path) {
     List<Movie> movies = new ArrayList<>();
 =====================================================================
+Found a 10 line (27 tokens) duplication in the following files: 
+Starting at line 32 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\AndreeaTest.java
+Starting at line 49 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
+
+    PopcornAppTest.testMyApplication(app, movieImporter);
+  }
+
+  @Test
+  public void listMoviesSortedAndreea() {
+    testMyApplication(new PopcornApp(), new AndreeaMovieImporter());
+  }
+
+  @Test
+  public void notAFileException() {
+=====================================================================
 Found a 3 line (26 tokens) duplication in the following files: 
 Starting at line 21 of D:\home\raiser\work\internship\popcorn\src\main\java\com\revomatico\play\javaship2020\App.java
-Starting at line 60 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
+Starting at line 62 of D:\home\raiser\work\internship\popcorn\src\test\java\com\revomatico\play\javaship2020\impl\PopcornAppTest.java
 
     app.setMovies(app.sort_movie(app.listMovies()));
     app.print_Movies(app.listMovies());

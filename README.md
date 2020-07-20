@@ -12,4 +12,4 @@ Movie wish list &amp; fetchPlay - music playlist
 
 # Development
 - mvn antrun:run - cleans end of lines to linux style
-- 
+- mvn validate - reformats code according to standards
