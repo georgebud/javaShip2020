@@ -10,3 +10,6 @@ Movie wish list &amp; fetchPlay - music playlist
 - [x] tests
 - [ ] git
 
+# Development
+- mvn antrun:run - cleans end of lines to linux style
+- 
