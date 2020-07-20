@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 public class PopcornAppTest {
   @Test
-  public void popcornAppShouldExist() {
+  public static void popcornAppShouldExist() {
     PopcornApp app = new PopcornApp();
     List<Movie> movies = app.listMovies();
     assertThat(movies).isNotNull();
@@ -21,7 +21,7 @@ public class PopcornAppTest {
   }
 
   @Test
-  public void listMovies() {
+  public static void listMovies() {
     PopcornApp app = new PopcornApp();
     app.addMovie(new Movie());
     List<Movie> movies = app.listMovies();

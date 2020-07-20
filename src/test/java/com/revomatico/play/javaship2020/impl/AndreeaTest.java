@@ -14,18 +14,13 @@ public class AndreeaTest {
 
   @Test
   public void popcornAppShouldExist() {
-    PopcornApp app = new PopcornApp();
-    List<Movie> movies = app.listMovies();
-    assertThat(movies).isNotNull();
-    assertThat(movies.size()).isEqualTo(0);
+    PopcornAppTest.popcornAppShouldExist();
   }
+
 
   @Test
   public void listMovies() {
-    PopcornApp app = new PopcornApp();
-    app.addMovie(new Movie());
-    List<Movie> movies = app.listMovies();
-    assertThat(movies.size()).isEqualTo(1);
+    PopcornAppTest.listMovies();
   }
 
   @Test
