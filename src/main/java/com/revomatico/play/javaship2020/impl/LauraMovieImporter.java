@@ -19,8 +19,7 @@ public class LauraMovieImporter implements MovieImporter {
 
     List<Movie> movies = new ArrayList<>();
     SimpleDateFormat format = new SimpleDateFormat("yyyy");
-    try {
-      BufferedReader csvReader = new BufferedReader(new FileReader(path));
+    try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
 
       csvReader.readLine(); //read the first line containing the name of columns
       String row;
@@ -30,9 +29,8 @@ public class LauraMovieImporter implements MovieImporter {
         Date productionYear = format.parse(columns[10]);
         movies.add(new Movie(movieTitle, productionYear));
       }
-      csvReader.close();
     } catch (IOException | ParseException e) {
-      e.printStackTrace();
+      throw new RuntimeException("When importing movies from csv", e);
     }
 
     return movies;

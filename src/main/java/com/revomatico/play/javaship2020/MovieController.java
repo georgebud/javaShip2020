@@ -1,5 +1,7 @@
 package com.revomatico.play.javaship2020;
 
+import com.revomatico.play.javaship2020.impl.AntoniaMovieImporter;
+import com.revomatico.play.javaship2020.impl.LauraMovieImporter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,9 +14,7 @@ public class MovieController {
 
   @GetMapping("/movies")
   public List<Movie> movies() {
-    ArrayList<Movie> list = new ArrayList<>();
-    list.add(new Movie("Nume", new Date()));
-    list.add(new Movie("Nume2", new Date()));
+    List<Movie> list = new AntoniaMovieImporter().importMovies("src/main/resources/WATCHLIST.csv");
     return list;
   }
 }
