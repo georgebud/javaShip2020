@@ -2,36 +2,36 @@ package com.revomatico.play.javaship2020.impl;
 
 import com.revomatico.play.javaship2020.Movie;
 import com.revomatico.play.javaship2020.MovieImporter;
-import sun.security.pkcs.ParsingException;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class MihaitaMovieImporter implements MovieImporter {
 
   @Override
   public List<Movie> importMovies(String path) {
 
-    List<Movie> moviesMihaita = new ArrayList<Movie>();
-    String line = "";
-    String cvsSplitBy = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    List<Movie> moviesMihaita = new ArrayList<>();
+    String csvSplitBy = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
-    try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+    try (Scanner moviesFile = new Scanner(new File(path), String.valueOf(StandardCharsets.UTF_8))) {
 
-      while ((line = br.readLine()) != null) {
+      moviesFile.nextLine();
+      while (moviesFile.hasNextLine()) {
 
-        String[] fileContents = line.split(cvsSplitBy);
-        Movie movieToBeAdded = new Movie(fileContents[5], dateFormat.parse(fileContents[13]));
+        String fileContents = moviesFile.nextLine();
+        String[] moviesProperties = fileContents.split(csvSplitBy);
+        Movie movieToBeAdded = new Movie(moviesProperties[5], new Date(Long.parseLong(moviesProperties[10])));
+        moviesMihaita.add(movieToBeAdded);
       }
 
-    } catch (IOException | ParseException e) {
+    } catch (IOException e) {
       throw new RuntimeException("When trying to importMovies from [" + path + "]", e);
     }
     return moviesMihaita;
