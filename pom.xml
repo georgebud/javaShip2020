@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.raisercostin</groupId>
@@ -15,6 +19,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <spring.boot-version>2.2.1.RELEASE</spring.boot-version>
+    <docker.image.prefix>com.revomatico</docker.image.prefix>
   </properties>
   <licenses>
     <license>
@@ -22,6 +28,18 @@
       <url>https://tldrlegal.com/license/mit-license</url>
     </license>
   </licenses>
+  <dependencyManagement>
+    <dependencies>
+      <!-- Spring Boot BOM -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring.boot-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -152,6 +170,13 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>com.revomatico.play.javaship2020.App</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
@@ -239,6 +264,17 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.4.7</version>
+        <configuration>
+          <buildArgs>
+            <JAR_FILE>${project.build.finalName}-main.jar</JAR_FILE>
+          </buildArgs>
+          <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.8</version>
@@ -246,9 +282,16 @@
         <!--$NO-MVN-MAN-VER$ -->
         <configuration>
           <target>
-            <echo message="ant cleanup started."/>
-            <fixcrlf srcdir="${basedir}" eol="unix" tab="remove" tablength="2" includes="**/*.java **/*.xml" preservelastmodified="true" excludes="target/**/* .git/**/* src/test/resources/lsports/**/*"/>
-            <echo message="ant cleanup finished."/>
+            <echo message="ant cleanup started." />
+            <fixcrlf
+              srcdir="${basedir}"
+              eol="unix"
+              tab="remove"
+              tablength="2"
+              includes="**/*.java **/*.xml"
+              preservelastmodified="true"
+              excludes="target/**/* .git/**/* src/test/resources/lsports/**/*" />
+            <echo message="ant cleanup finished." />
           </target>
         </configuration>
       </plugin>
@@ -321,7 +364,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore/>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -410,6 +453,14 @@
     <repository>
       <id>jcenter-bintray</id>
       <url>https://jcenter.bintray.com/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
