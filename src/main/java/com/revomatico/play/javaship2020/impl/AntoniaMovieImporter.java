@@ -11,8 +11,15 @@ import java.util.List;
 
 import com.revomatico.play.javaship2020.Movie;
 import com.revomatico.play.javaship2020.MovieImporter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+@Component
+@Slf4j
 public class AntoniaMovieImporter implements MovieImporter {
+  public AntoniaMovieImporter() {
+    log.info("AntoniaMovieImporter created");
+  }
 
   @Override
   public List<Movie> importMovies(String path) {
@@ -25,7 +32,8 @@ public class AntoniaMovieImporter implements MovieImporter {
       while ((line = b.readLine()) != null) {
 
         String[] s = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");//instead of line.split(",");
-        Movie movie = new Movie(s[5], dateFormat.parse(s[13])); //s[5]=title s[13]=releaseDate
+        Movie movie = new Movie(
+          s[5], dateFormat.parse(s[13]), s[17], line); //s[5]=title s[13]=releaseDate, s[17] image
         moviesAntonia.add(movie);
       }
     } catch (IOException | ParseException e) {

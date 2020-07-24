@@ -3,15 +3,22 @@ package com.revomatico.play.javaship2020;
 import java.util.Date;
 
 public class Movie implements Comparable<Movie> {
-  private String title;
-  private Date releaseDate;
+  private final String title;
+  private final Date releaseDate;
+  private final String image;
+  private final String description;
 
-  public Movie() {
+  @Deprecated
+  //Try to use the other better constructor that doesn't allow invalid data
+  public Movie(String title, Date releaseDate) {
+    this(title, releaseDate, "https://cdn.vuetifyjs.com/images/lists/5.jpg", "no movie description");
   }
 
-  public Movie(String title, Date releaseDate) {
+  public Movie(String title, Date releaseDate, String image, String description) {
     this.title = title;
     this.releaseDate = releaseDate;
+    this.image = image;
+    this.description = description;
   }
 
   @Override
@@ -34,6 +41,17 @@ public class Movie implements Comparable<Movie> {
 
   public Date getReleaseDate() {
     return releaseDate;
+  }
+
+  public String image() {
+    //return null;//break of FailFast break of PLS
+    //return "";//break of FailFast break of PLS
+    //good: throw new RuntimeException("Not implemented yet!!!");
+    return image;
+  }
+
+  public String description() {
+    return description;
   }
 
   //  @Override

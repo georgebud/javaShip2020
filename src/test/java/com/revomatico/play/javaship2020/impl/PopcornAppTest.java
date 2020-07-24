@@ -3,6 +3,7 @@ package com.revomatico.play.javaship2020.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Date;
 import java.util.List;
 
 import com.revomatico.play.javaship2020.Movie;
@@ -22,7 +23,7 @@ public class PopcornAppTest {
   @Test
   public static void listMovies() {
     PopcornApp app = new PopcornApp();
-    app.addMovie(new Movie());
+    app.addMovie(new Movie("movie1", new Date()));
     List<Movie> movies = app.listMovies();
     assertThat(movies.size()).isEqualTo(1);
   }

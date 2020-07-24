@@ -2,7 +2,6 @@ package com.revomatico.play.javaship2020.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,12 +13,19 @@ import com.revomatico.play.javaship2020.Movie;
 import com.revomatico.play.javaship2020.MovieImporter;
 
 public class AndreeaMovieImporter implements MovieImporter {
+  private SimpleDateFormat format;
+
+  public AndreeaMovieImporter() {
+    this(new SimpleDateFormat("yyyy-MM-dd"));
+  }
+
+  public AndreeaMovieImporter(SimpleDateFormat format) {
+    this.format = format;
+  }
 
   @Override
   public List<Movie> importMovies(String path) {
     ArrayList<Movie> movieList = new ArrayList<>();
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
     try {
       Scanner readerLines = new Scanner(new File(path), String.valueOf(StandardCharsets.UTF_8));
       String line = readerLines.nextLine();

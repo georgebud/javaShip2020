@@ -1,12 +1,9 @@
 package com.revomatico.play.javaship2020.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
 import com.revomatico.play.javaship2020.PopcornApp;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +14,6 @@ public class AndreeaTest {
     PopcornAppTest.popcornAppShouldExist();
   }
 
-
   @Test
   public void listMovies() {
     PopcornAppTest.listMovies();
@@ -25,12 +21,12 @@ public class AndreeaTest {
 
   @Test
   public void listMoviesSortedAndreea() {
-    PopcornAppTest.testMyApplication(new PopcornApp(), new AndreeaMovieImporter());
+    PopcornAppTest.testMyApplication(new PopcornApp(), new AndreeaMovieImporter(new SimpleDateFormat("yyyy-MM-dd")));
   }
 
   @Test
   public void notAFileException() {
-    assertThatThrownBy(() -> new AndreeaMovieImporter().importMovies("not a file " +
+    assertThatThrownBy(() -> new AndreeaMovieImporter(new SimpleDateFormat("yyyy-MM-dd")).importMovies("not a file " +
         "or other type of file")).isInstanceOf(RuntimeException.class);
   }
 
