@@ -5,6 +5,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Preconditions;
 import io.vavr.collection.Map;
+import org.raisercostin.nodes.Nodes;
 
 public class MediaItem implements Comparable<MediaItem> {
   private final String title;
@@ -74,18 +75,20 @@ public class MediaItem implements Comparable<MediaItem> {
     return this;
   }
 
-  //  @Override
-  //  public int compareTo(Movie o) {
-  //    if (getDate() == null || o.getDate() == null) {
-  //      return 0;
-  //    }
-  //    return getDate().compareTo(o.getDate());
-  //  }
-
   //needed to read image in deezer
   //instead of @JsonProperty("album.cover_medium")
   @JsonProperty("album")
   private void unpackNameFromNestedObject(Map<String, String> album) {
     image = album.get("cover_medium").getOrElse("deezer no image");
+  }
+
+  // needed to read image in youtube
+  @JsonProperty("thumbnails")
+  private void unpackThumbnailFromNestedObject(Map<String, Map<String, String>> thumbnails) {
+    try {
+      image = thumbnails.get("default").getOrNull().get("url").getOrNull();
+    } catch (NullPointerException e) {
+      image = "youtube no image";
+    }
   }
 }

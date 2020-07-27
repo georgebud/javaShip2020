@@ -16,7 +16,7 @@ public class AndreeaMovieImporter implements MediaItemImporter {
   private SimpleDateFormat format;
 
   public AndreeaMovieImporter() {
-    this(new SimpleDateFormat("yyyy-MM-dd"));
+    this(new SimpleDateFormat("yyyy"));
   }
 
   public AndreeaMovieImporter(SimpleDateFormat format) {
@@ -33,7 +33,7 @@ public class AndreeaMovieImporter implements MediaItemImporter {
         line = readerLines.nextLine();
         String[] info = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
         movieList.add(new MediaItem(info[5],
-          format.parse(info[info.length - 2])));
+          format.parse(info[10])));
       }
       readerLines.close();
 

@@ -13,6 +13,6 @@ class DeezerPlaylistImporterTest {
   void testImportMediaItems() {
     List<MediaItem> list = new DeezerPlaylistImporter().importMediaItems("");
     assertThat(list).isNotNull();
-    assertThat(list).hasSize(3);
+    assertThat(list).hasSize(4);
   }
 }

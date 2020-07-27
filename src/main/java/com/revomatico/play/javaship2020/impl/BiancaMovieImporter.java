@@ -15,7 +15,7 @@ public class BiancaMovieImporter implements MediaItemImporter {
   @Override
   public List<MediaItem> importMediaItems(String path) {
     ArrayList<MediaItem> movies = new ArrayList<>();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
     try {
 
       File csvReader = new File(path);
@@ -24,7 +24,7 @@ public class BiancaMovieImporter implements MediaItemImporter {
       while (reader.hasNextLine()) {
         row = reader.nextLine();
         String[] data = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        movies.add(new MediaItem(data[5], dateFormat.parse(data[data.length - 2])));
+        movies.add(new MediaItem(data[5], dateFormat.parse(data[10])));
       }
       reader.close();
 

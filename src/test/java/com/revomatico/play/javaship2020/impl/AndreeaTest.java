@@ -21,13 +21,14 @@ public class AndreeaTest {
 
   @Test
   public void listMoviesSortedAndreea() {
-    PopcornAppTest.testMyApplication(new PopcornApp(), new AndreeaMovieImporter(new SimpleDateFormat("yyyy-MM-dd")));
+    PopcornAppTest.testMyApplication(new PopcornApp(), new AndreeaMovieImporter(new SimpleDateFormat("yyyy")));
   }
 
   @Test
   public void notAFileException() {
-    assertThatThrownBy(() -> new AndreeaMovieImporter(new SimpleDateFormat("yyyy-MM-dd")).importMediaItems("not a file " +
-        "or other type of file")).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(
+      () -> new AndreeaMovieImporter(new SimpleDateFormat("yyyy-MM-dd")).importMediaItems("not a file " +
+          "or other type of file")).isInstanceOf(RuntimeException.class);
   }
 
 }
