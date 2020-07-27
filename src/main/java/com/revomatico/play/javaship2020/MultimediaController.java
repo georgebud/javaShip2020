@@ -26,6 +26,8 @@ public class MultimediaController {
   @GetMapping("/movies")
   public List<MovieModel> playlists() {
     List<MediaItem> list = new DeezerPlaylistImporter().importMediaItems("src/main/resources/WATCHLIST.csv");
+    //new ArrayList<>();
+
     return Iterator.ofAll(list)
       .toList()
       .appendAll(movieImporter.importMediaItems("src/main/resources/WATCHLIST.csv"))
@@ -35,20 +37,22 @@ public class MultimediaController {
   }
 
   private MovieModel toMovieModel(MediaItem movie) {
-    MovieModel result = new MovieModel(movie.image(), movie.getTitle(), movie.description());
+    MovieModel result = new MovieModel(movie.url, movie.image(), movie.getTitle(), movie.description());
     //result.itemTitle = "bla bla";
     return result;
   }
 }
 
 class MovieModel {
-  public MovieModel(String itemImage, String itemTitle, String itemDescription) {
+  public final String itemUrl;
+  public final String itemImage;
+  public final String itemTitle;
+  public final String itemDescription;
+
+  public MovieModel(String itemUrl, String itemImage, String itemTitle, String itemDescription) {
+    this.itemUrl = itemUrl;
     this.itemImage = itemImage;
     this.itemTitle = itemTitle;
     this.itemDescription = itemDescription;
   }
-
-  public final String itemImage;
-  public final String itemTitle;
-  public final String itemDescription;
 }

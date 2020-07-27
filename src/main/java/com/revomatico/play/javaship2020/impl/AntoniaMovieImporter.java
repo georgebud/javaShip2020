@@ -13,14 +13,13 @@ import java.util.List;
 import com.revomatico.play.javaship2020.MediaItem;
 import com.revomatico.play.javaship2020.MediaItemImporter;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
 public class AntoniaMovieImporter implements MediaItemImporter {
   public AntoniaMovieImporter() {
-	//log.info("AntoniaMovieImporter created");
+    //log.info("AntoniaMovieImporter created");
   }
 
   @Override
@@ -29,27 +28,30 @@ public class AntoniaMovieImporter implements MediaItemImporter {
     List<MediaItem> moviesAntonia = new ArrayList<>();
     String line = "";
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    
+
     try (BufferedReader b = new BufferedReader(new FileReader(path))) {
-    	
+
       line = b.readLine();//get columns' names
-      String[] columnNames =  line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-    		  
+      String[] columnNames = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+
       while ((line = b.readLine()) != null) {
 
         String[] s = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");//instead of line.split(",");
-        HashMap<String,String> hm = new HashMap<String,String>();
-        for(int i=0;i<s.length;i++)
-      	  hm.put(columnNames[i],s[i]);
-         
-        MediaItem movie = new MediaItem((String) hm.get("Title"), dateFormat.parse((String) hm.get("Release Date")), (String) hm.get("Image"), line); //s[5]=title s[13]=releaseDate, s[17] image
+        HashMap<String, String> hm = new HashMap<>();
+        for (int i = 0; i < s.length; i++) {
+          hm.put(columnNames[i], s[i]);
+        }
+
+        MediaItem movie = new MediaItem(hm.get("Title"), dateFormat.parse(hm.get("Release Date")),
+          hm.get("Image"), line,
+          //TODO to add url from csv
+          ""); //s[5]=title s[13]=releaseDate, s[17] image
         moviesAntonia.add(movie);
       }
     } catch (IOException | ParseException e) {
       throw new RuntimeException("When trying to importMovies from [" + path + "]", e);
     }
- 
-   
+
     return moviesAntonia;
   }
 
