@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class AndreeaMovieImporter implements MovieImporter {
+public class AndreeaMovieImporter implements MediaItemImporter {
   private SimpleDateFormat format;
 
   public AndreeaMovieImporter() {
@@ -24,15 +24,15 @@ public class AndreeaMovieImporter implements MovieImporter {
   }
 
   @Override
-  public List<Movie> importMovies(String path) {
-    ArrayList<Movie> movieList = new ArrayList<>();
+  public List<MediaItem> importMediaItems(String path) {
+    ArrayList<MediaItem> movieList = new ArrayList<>();
     try {
       Scanner readerLines = new Scanner(new File(path), String.valueOf(StandardCharsets.UTF_8));
       String line = readerLines.nextLine();
       while (readerLines.hasNextLine()) {
         line = readerLines.nextLine();
         String[] info = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        movieList.add(new Movie(info[5],
+        movieList.add(new MediaItem(info[5],
           format.parse(info[info.length - 2])));
       }
       readerLines.close();

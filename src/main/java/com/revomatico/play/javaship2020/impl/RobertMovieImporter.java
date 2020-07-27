@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class RobertMovieImporter implements MovieImporter {
+public class RobertMovieImporter implements MediaItemImporter {
 
   @Override
-  public List<Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
 
-    ArrayList<Movie> movieList = new ArrayList<>();
+    ArrayList<MediaItem> movieList = new ArrayList<>();
     try {
       File fileRead = new File(path);
       Scanner reader = new Scanner(fileRead);
@@ -26,7 +26,7 @@ public class RobertMovieImporter implements MovieImporter {
         data = reader.nextLine();
         String[] splitData = data.split(",");
 
-        movieList.add(new Movie(splitData[5], dateFormat.parse(splitData[splitData.length - 2])));
+        movieList.add(new MediaItem(splitData[5], dateFormat.parse(splitData[splitData.length - 2])));
       }
       reader.close();
     } catch (FileNotFoundException | ParseException e) {

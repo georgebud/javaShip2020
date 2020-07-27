@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-public class GeorgeMovieImporter implements MovieImporter {
+public class GeorgeMovieImporter implements MediaItemImporter {
   @Override
-  public List<Movie> importMovies(String path) {
-    List<Movie> movies = new ArrayList<>();
+  public List<MediaItem> importMediaItems(String path) {
+    List<MediaItem> movies = new ArrayList<>();
 
     try (
         Reader reader = Files.newBufferedReader(Paths.get(path));
@@ -34,7 +34,7 @@ public class GeorgeMovieImporter implements MovieImporter {
         Date releaseDate = new SimpleDateFormat("yyyy-MM-dd")
           .parse(csvRecord.get("Release Date"));
 
-        movies.add(new Movie(title, releaseDate));
+        movies.add(new MediaItem(title, releaseDate));
       }
     } catch (IOException | ParseException e) {
       throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);

@@ -11,14 +11,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class AndreiMovieImporter implements MovieImporter {
+public class AndreiMovieImporter implements MediaItemImporter {
 
   @Override
-  public List<Movie> importMovies(String path) {
-    ArrayList<Movie> AndreiArray = new ArrayList<>();
+  public List<MediaItem> importMediaItems(String path) {
+    ArrayList<MediaItem> AndreiArray = new ArrayList<>();
     DateFormat date = new SimpleDateFormat("yyyy");
     try (Scanner csvReader = new Scanner(new File(path), String.valueOf(StandardCharsets.UTF_8))) {
       csvReader.nextLine();
@@ -26,7 +26,7 @@ public class AndreiMovieImporter implements MovieImporter {
         String csvReaderLine = csvReader.nextLine();
         String[] bufferSplit = csvReaderLine.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
         Date movieDate = date.parse(bufferSplit[10]);
-        AndreiArray.add(new Movie(bufferSplit[5], movieDate));
+        AndreiArray.add(new MediaItem(bufferSplit[5], movieDate));
       }
       csvReader.close();
     } catch (IOException | ParseException e) {

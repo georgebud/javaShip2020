@@ -6,8 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.Date;
 import java.util.List;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 import com.revomatico.play.javaship2020.PopcornApp;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class PopcornAppTest {
   @Test
   public static void popcornAppShouldExist() {
     PopcornApp app = new PopcornApp();
-    List<Movie> movies = app.listMovies();
+    List<MediaItem> movies = app.listMovies();
     assertThat(movies).isNotNull();
     assertThat(movies.size()).isEqualTo(0);
   }
@@ -23,8 +23,8 @@ public class PopcornAppTest {
   @Test
   public static void listMovies() {
     PopcornApp app = new PopcornApp();
-    app.addMovie(new Movie("movie1", new Date()));
-    List<Movie> movies = app.listMovies();
+    app.addMovie(new MediaItem("movie1", new Date()));
+    List<MediaItem> movies = app.listMovies();
     assertThat(movies.size()).isEqualTo(1);
   }
 
@@ -57,7 +57,7 @@ public class PopcornAppTest {
   public void listMoviesSortedRobert() {
     PopcornApp app = new PopcornApp();
     RobertMovieImporter robert = new RobertMovieImporter();
-    app.setMovies(robert.importMovies("./src/main/resources/WATCHLIST.csv"));
+    app.setMovies(robert.importMediaItems("./src/main/resources/WATCHLIST.csv"));
     app.setMovies(app.sort_movie(app.listMovies()));
     app.print_Movies(app.listMovies());
 
@@ -77,13 +77,13 @@ public class PopcornAppTest {
   public void testForFullCoverageAntonia() {
     PopcornApp app = new PopcornApp();
     AntoniaMovieImporter movieImporter = new AntoniaMovieImporter();
-    assertThatThrownBy(() -> app.setMovies(movieImporter.importMovies(null))).isInstanceOf(NullPointerException.class);
+    assertThatThrownBy(() -> app.setMovies(movieImporter.importMediaItems(null))).isInstanceOf(NullPointerException.class);
   }
 
   @Test
   public void testFullCoverageAntonia2() {
     AntoniaMovieImporter movieImporter = new AntoniaMovieImporter();
-    assertThatThrownBy(() -> movieImporter.importMovies("movies-inexistent-file.csv"
+    assertThatThrownBy(() -> movieImporter.importMediaItems("movies-inexistent-file.csv"
         + "smth")).isInstanceOf(RuntimeException.class);
   }
 
@@ -103,11 +103,11 @@ public class PopcornAppTest {
     testMyApplication(new PopcornApp(), new CristianMovieImporter());
   }
 
-  static void testMyApplication(PopcornApp app, MovieImporter movieImporter) {
-    app.setMovies(movieImporter.importMovies("./src/main/resources/WATCHLIST.csv"));
+  static void testMyApplication(PopcornApp app, MediaItemImporter movieImporter) {
+    app.setMovies(movieImporter.importMediaItems("./src/main/resources/WATCHLIST.csv"));
     app.setMovies(app.sort_movie(app.listMovies()));
 
-    List<Movie> movies = app.listMovies();
+    List<MediaItem> movies = app.listMovies();
     for (int i = 0; i < movies.size() - 1; i++) {
       assertThat(movies.get(i).compareTo(movies.get(i + 1)) <= 0).isTrue(); //check if the list is sorted
     }

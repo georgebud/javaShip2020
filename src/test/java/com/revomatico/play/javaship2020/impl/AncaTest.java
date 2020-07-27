@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 import com.revomatico.play.javaship2020.PopcornApp;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ public class AncaTest {
   @Test
   public void testFullCoverageAnca() {
     AncaMovieImporter movieImporter = new AncaMovieImporter();
-    assertThatThrownBy(() -> movieImporter.importMovies("movies-inexistent-file.csv"
+    assertThatThrownBy(() -> movieImporter.importMediaItems("movies-inexistent-file.csv"
         + "smth")).isInstanceOf(RuntimeException.class);
   }
 }

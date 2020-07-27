@@ -26,7 +26,7 @@ public class AndreeaTest {
 
   @Test
   public void notAFileException() {
-    assertThatThrownBy(() -> new AndreeaMovieImporter(new SimpleDateFormat("yyyy-MM-dd")).importMovies("not a file " +
+    assertThatThrownBy(() -> new AndreeaMovieImporter(new SimpleDateFormat("yyyy-MM-dd")).importMediaItems("not a file " +
         "or other type of file")).isInstanceOf(RuntimeException.class);
   }
 

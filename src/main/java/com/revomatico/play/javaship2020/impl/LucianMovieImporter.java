@@ -10,10 +10,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class LucianMovieImporter implements MovieImporter {
+public class LucianMovieImporter implements MediaItemImporter {
 
   static class CSVUtils {
 
@@ -114,10 +114,10 @@ public class LucianMovieImporter implements MovieImporter {
 
   }
 
-  public List<Movie> listMovies(String filePath) throws FileNotFoundException, ParseException {
+  public List<MediaItem> listMovies(String filePath) throws FileNotFoundException, ParseException {
     Scanner scanner = new Scanner(new File(filePath));
     scanner.nextLine(); //Skipping the first line, which contains the column names
-    List<Movie> movieList = new ArrayList<>();
+    List<MediaItem> movieList = new ArrayList<>();
     SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd"); //Date format used in date parsing
 
     while (scanner.hasNext()) {
@@ -129,7 +129,7 @@ public class LucianMovieImporter implements MovieImporter {
       if (title.charAt(0) == '"') {
         title = title.substring(1);
       } //If the title was formated in case there was a coma in it we remove the " from the beginning
-      Movie current_movie = new Movie(title, date); //Creating the movie
+      MediaItem current_movie = new MediaItem(title, date); //Creating the movie
       movieList.add(current_movie); //Adding the movie to the list
     }
 
@@ -138,7 +138,7 @@ public class LucianMovieImporter implements MovieImporter {
   }
 
   @Override
-  public List<Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
     try {
       return listMovies(path);
     } catch (FileNotFoundException e) {

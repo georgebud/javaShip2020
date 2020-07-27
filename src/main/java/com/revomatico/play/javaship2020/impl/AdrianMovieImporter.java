@@ -11,13 +11,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class AdrianMovieImporter implements MovieImporter {
+public class AdrianMovieImporter implements MediaItemImporter {
 
   @Override
-  public List<Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
     try {
       return readMovies(path);
     } catch (FileNotFoundException | ParseException e) {
@@ -25,14 +25,14 @@ public class AdrianMovieImporter implements MovieImporter {
     }
   }
 
-  public List<Movie> readMovies(String filepath) throws FileNotFoundException, ParseException {
+  public List<MediaItem> readMovies(String filepath) throws FileNotFoundException, ParseException {
     int titleIndex = 5;
     int dateIndex = 13;
 
     Scanner s = new Scanner(new File(filepath));
     // skip the first line
     s.nextLine();
-    List<Movie> movies = new ArrayList<>();
+    List<MediaItem> movies = new ArrayList<>();
 
     while (s.hasNext()) {
       List<String> line = CSVReader.parseLine(s.nextLine());
@@ -41,7 +41,7 @@ public class AdrianMovieImporter implements MovieImporter {
       DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
       Date releaseDate = format.parse(date);
 
-      Movie movie = new Movie(title, releaseDate);
+      MediaItem movie = new MediaItem(title, releaseDate);
       movies.add(movie);
     }
     Collections.sort(movies);

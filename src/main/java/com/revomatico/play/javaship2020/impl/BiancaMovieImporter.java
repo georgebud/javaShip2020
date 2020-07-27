@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class BiancaMovieImporter implements MovieImporter {
+public class BiancaMovieImporter implements MediaItemImporter {
   @Override
-  public List<Movie> importMovies(String path) {
-    ArrayList<Movie> movies = new ArrayList<>();
+  public List<MediaItem> importMediaItems(String path) {
+    ArrayList<MediaItem> movies = new ArrayList<>();
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     try {
 
@@ -24,7 +24,7 @@ public class BiancaMovieImporter implements MovieImporter {
       while (reader.hasNextLine()) {
         row = reader.nextLine();
         String[] data = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        movies.add(new Movie(data[5], dateFormat.parse(data[data.length - 2])));
+        movies.add(new MediaItem(data[5], dateFormat.parse(data[data.length - 2])));
       }
       reader.close();
 

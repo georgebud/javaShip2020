@@ -8,14 +8,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 import com.revomatico.play.javaship2020.PopcornApp;
 
-public class VladMovieImporter implements MovieImporter {
+public class VladMovieImporter implements MediaItemImporter {
 
   @Override
-  public List<Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
     PopcornApp app = new PopcornApp();
 
     try (Scanner buff = new Scanner(new File(path))) {
@@ -31,7 +31,7 @@ public class VladMovieImporter implements MovieImporter {
         try {
           Date year = format.parse(string_year);
           String name = arrSplit[5];
-          app.addMovie(new Movie(name, year));
+          app.addMovie(new MediaItem(name, year));
         } catch (ParseException e) {
           throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
         }

@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class BogdanMovieImporter implements MovieImporter {
+public class BogdanMovieImporter implements MediaItemImporter {
 
   @Override
-  public List<Movie> importMovies(String path) {
-    List<Movie> movies = new ArrayList<>();
+  public List<MediaItem> importMediaItems(String path) {
+    List<MediaItem> movies = new ArrayList<>();
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
       String line = bufferedReader.readLine();
       line = bufferedReader.readLine();
@@ -27,7 +27,7 @@ public class BogdanMovieImporter implements MovieImporter {
 
         try {
           Date date = new SimpleDateFormat("mm/dd/yyyy").parse(movieProprieties[movieProprieties.length - 2]);
-          movies.add(new Movie(movieProprieties[5], date));
+          movies.add(new MediaItem(movieProprieties[5], date));
         } catch (ParseException e) {
           throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
         }

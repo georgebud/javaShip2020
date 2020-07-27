@@ -2,7 +2,7 @@ package com.revomatico.play.javaship2020;
 
 import java.util.Date;
 
-public class Movie implements Comparable<Movie> {
+public class MediaItem implements Comparable<MediaItem> {
   private final String title;
   private final Date releaseDate;
   private final String image;
@@ -10,11 +10,11 @@ public class Movie implements Comparable<Movie> {
 
   @Deprecated
   //Try to use the other better constructor that doesn't allow invalid data
-  public Movie(String title, Date releaseDate) {
+  public MediaItem(String title, Date releaseDate) {
     this(title, releaseDate, "https://cdn.vuetifyjs.com/images/lists/5.jpg", "no movie description");
   }
 
-  public Movie(String title, Date releaseDate, String image, String description) {
+  public MediaItem(String title, Date releaseDate, String image, String description) {
     this.title = title;
     this.releaseDate = releaseDate;
     this.image = image;
@@ -22,7 +22,7 @@ public class Movie implements Comparable<Movie> {
   }
 
   @Override
-  public int compareTo(Movie movie) {
+  public int compareTo(MediaItem movie) {
     if (this.releaseDate.equals(movie.releaseDate)) {
       return this.title.compareTo(movie.title);
     }

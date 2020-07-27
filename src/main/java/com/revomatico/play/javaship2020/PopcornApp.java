@@ -5,29 +5,29 @@ import java.util.Collections;
 import java.util.List;
 
 public class PopcornApp {
-  private List<Movie> movies = new ArrayList<>();
+  private List<MediaItem> movies = new ArrayList<>();
 
-  public void setMovies(List<Movie> movies) // useful for sorting
+  public void setMovies(List<MediaItem> movies) // useful for sorting
   {
     this.movies = movies;
   }
 
-  public List<Movie> listMovies() {
+  public List<MediaItem> listMovies() {
     return movies;
   }
 
-  public void addMovie(Movie movie) {
+  public void addMovie(MediaItem movie) {
     movies.add(movie);
   }
 
-  public List<Movie> sort_movie(List<Movie> movies) {
+  public List<MediaItem> sort_movie(List<MediaItem> movies) {
     Collections.sort(movies);
     return movies;
   }
 
-  public void print_Movies(List<Movie> movies) {
+  public void print_Movies(List<MediaItem> movies) {
     System.out.println("Sorted movies are: ");
-    for (Movie movie : movies) {
+    for (MediaItem movie : movies) {
       System.out.println(movie);
     }
   }

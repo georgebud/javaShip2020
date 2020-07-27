@@ -24,6 +24,6 @@ class MihaitaMovieImporterTest {
   @Test
   public void testAllMihaita() {
     MihaitaMovieImporter movieImporter = new MihaitaMovieImporter();
-    assertThatThrownBy(() -> movieImporter.importMovies("movies-file-none.csv")).isInstanceOf(RuntimeException.class);
+    assertThatThrownBy(() -> movieImporter.importMediaItems("movies-file-none.csv")).isInstanceOf(RuntimeException.class);
   }
 }

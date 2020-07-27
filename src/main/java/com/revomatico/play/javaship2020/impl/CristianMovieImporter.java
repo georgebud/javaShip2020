@@ -12,17 +12,17 @@ import java.util.List;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class CristianMovieImporter implements MovieImporter {
+public class CristianMovieImporter implements MediaItemImporter {
   private static final String YEAR = "year";
   private static final String TITLE = "title";
 
   @Override
-  public List<Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
 
-    List<Movie> movieList = new ArrayList<>();
+    List<MediaItem> movieList = new ArrayList<>();
 
     try (FileReader filereader = new FileReader(path);
         CSVReader csvReader = new CSVReaderBuilder(filereader)
@@ -48,7 +48,7 @@ public class CristianMovieImporter implements MovieImporter {
             productionDate = format.parse(cell);
           }
         }
-        movieList.add(new Movie(title, productionDate));
+        movieList.add(new MediaItem(title, productionDate));
       }
 
     } catch (Exception e) {

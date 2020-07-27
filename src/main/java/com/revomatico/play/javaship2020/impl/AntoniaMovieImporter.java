@@ -10,23 +10,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class AntoniaMovieImporter implements MovieImporter {
+public class AntoniaMovieImporter implements MediaItemImporter {
   public AntoniaMovieImporter() {
 	//log.info("AntoniaMovieImporter created");
   }
 
   @Override
-  public List<Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
 
-    List<Movie> moviesAntonia = new ArrayList<>();
+    List<MediaItem> moviesAntonia = new ArrayList<>();
     String line = "";
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -42,7 +42,7 @@ public class AntoniaMovieImporter implements MovieImporter {
         for(int i=0;i<s.length;i++)
       	  hm.put(columnNames[i],s[i]);
          
-        Movie movie = new Movie((String) hm.get("Title"), dateFormat.parse((String) hm.get("Release Date")), (String) hm.get("Image"), line); //s[5]=title s[13]=releaseDate, s[17] image
+        MediaItem movie = new MediaItem((String) hm.get("Title"), dateFormat.parse((String) hm.get("Release Date")), (String) hm.get("Image"), line); //s[5]=title s[13]=releaseDate, s[17] image
         moviesAntonia.add(movie);
       }
     } catch (IOException | ParseException e) {

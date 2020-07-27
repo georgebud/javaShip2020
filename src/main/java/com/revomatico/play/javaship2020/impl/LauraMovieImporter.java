@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.revomatico.play.javaship2020.Movie;
-import com.revomatico.play.javaship2020.MovieImporter;
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
-public class LauraMovieImporter implements MovieImporter {
+public class LauraMovieImporter implements MediaItemImporter {
 
   @Override
-  public List<Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
 
-    List<Movie> movies = new ArrayList<>();
+    List<MediaItem> movies = new ArrayList<>();
     SimpleDateFormat format = new SimpleDateFormat("yyyy");
     try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
 
@@ -27,7 +27,7 @@ public class LauraMovieImporter implements MovieImporter {
         String[] columns = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); //split the data
         String movieTitle = columns[5].replaceAll("^[\"']+|[\"']+$", ""); //remove possible "(movie title)"
         Date productionYear = format.parse(columns[10]);
-        movies.add(new Movie(movieTitle, productionYear));
+        movies.add(new MediaItem(movieTitle, productionYear));
       }
     } catch (IOException | ParseException e) {
       throw new RuntimeException("When importing movies from csv", e);

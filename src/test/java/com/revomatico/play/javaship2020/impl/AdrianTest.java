@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.List;
 
-import com.revomatico.play.javaship2020.Movie;
+import com.revomatico.play.javaship2020.MediaItem;
 import org.junit.jupiter.api.Test;
 
 public class AdrianTest {
@@ -12,7 +12,7 @@ public class AdrianTest {
   public void popcornAppShouldExist() throws FileNotFoundException, ParseException {
     String path = "src/main/resources/WATCHLIST.csv";
     AdrianMovieImporter a = new AdrianMovieImporter();
-    List<Movie> movies = a.readMovies(path);
+    List<MediaItem> movies = a.readMovies(path);
     System.out.println(movies);
   }
 }
