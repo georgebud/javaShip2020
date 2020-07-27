@@ -24,9 +24,9 @@ public class RobertMovieImporter implements MediaItemImporter {
       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
       while (reader.hasNextLine()) {
         data = reader.nextLine();
-        String[] splitData = data.split(",");
+        String[] splitData = data.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
-        movieList.add(new MediaItem(splitData[5], dateFormat.parse(splitData[splitData.length - 2])));
+        movieList.add(new MediaItem(splitData[5], dateFormat.parse(splitData[13])));
       }
       reader.close();
     } catch (FileNotFoundException | ParseException e) {
