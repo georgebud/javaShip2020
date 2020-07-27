@@ -1,5 +1,9 @@
 package com.revomatico.play.javaship2020.impl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,17 +11,12 @@ import java.util.Scanner;
 import com.revomatico.play.javaship2020.Movie;
 import com.revomatico.play.javaship2020.MovieImporter;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 public class RobertMovieImporter implements MovieImporter {
 
   @Override
   public List<Movie> importMovies(String path) {
 
-    ArrayList<Movie> movieList = new ArrayList<Movie>();
+    ArrayList<Movie> movieList = new ArrayList<>();
 
     try {
       File fileRead = new File(path);
@@ -32,8 +31,7 @@ public class RobertMovieImporter implements MovieImporter {
       }
       reader.close();
     } catch (FileNotFoundException | ParseException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
 
     return movieList;

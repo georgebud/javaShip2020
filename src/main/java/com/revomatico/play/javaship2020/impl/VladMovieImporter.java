@@ -33,7 +33,7 @@ public class VladMovieImporter implements MovieImporter {
           String name = arrSplit[5];
           app.addMovie(new Movie(name, year));
         } catch (ParseException e) {
-          e.printStackTrace();
+          throw new RuntimeException(e);
         }
         entire_line = buff.nextLine();
 

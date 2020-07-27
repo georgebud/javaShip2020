@@ -1,12 +1,12 @@
 package com.revomatico.play.javaship2020.impl;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import com.revomatico.play.javaship2020.Movie;
 import com.revomatico.play.javaship2020.MovieImporter;
@@ -29,8 +29,7 @@ public class BiancaMovieImporter implements MovieImporter {
       reader.close();
 
     } catch (IOException | ParseException e) {
-      System.out.println("Occured an exception!!!");
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
     return movies;
   }
