@@ -33,13 +33,13 @@ public class VladMovieImporter implements MovieImporter {
           String name = arrSplit[5];
           app.addMovie(new Movie(name, year));
         } catch (ParseException e) {
-          throw new RuntimeException(e);
+          throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
         }
         entire_line = buff.nextLine();
 
       }
     } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
     return app.listMovies();
   }

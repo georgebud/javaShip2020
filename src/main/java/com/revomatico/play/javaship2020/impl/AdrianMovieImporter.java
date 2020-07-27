@@ -21,7 +21,7 @@ public class AdrianMovieImporter implements MovieImporter {
     try {
       return readMovies(path);
     } catch (FileNotFoundException | ParseException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
   }
 

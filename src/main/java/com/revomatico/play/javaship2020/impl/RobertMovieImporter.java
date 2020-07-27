@@ -17,7 +17,6 @@ public class RobertMovieImporter implements MovieImporter {
   public List<Movie> importMovies(String path) {
 
     ArrayList<Movie> movieList = new ArrayList<>();
-
     try {
       File fileRead = new File(path);
       Scanner reader = new Scanner(fileRead);
@@ -31,9 +30,8 @@ public class RobertMovieImporter implements MovieImporter {
       }
       reader.close();
     } catch (FileNotFoundException | ParseException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
-
     return movieList;
   }
 

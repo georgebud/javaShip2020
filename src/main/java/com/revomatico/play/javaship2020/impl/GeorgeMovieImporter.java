@@ -1,5 +1,6 @@
 package com.revomatico.play.javaship2020.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -36,7 +37,7 @@ public class GeorgeMovieImporter implements MovieImporter {
         movies.add(new Movie(title, releaseDate));
       }
     } catch (IOException | ParseException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
 
     return movies;

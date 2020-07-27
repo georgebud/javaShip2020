@@ -1,5 +1,6 @@
 package com.revomatico.play.javaship2020.impl;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -51,7 +52,7 @@ public class CristianMovieImporter implements MovieImporter {
       }
 
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
     return movieList;
   }
@@ -75,7 +76,7 @@ public class CristianMovieImporter implements MovieImporter {
       }
 
     } catch (IOException | CsvValidationException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
     return index;
   }

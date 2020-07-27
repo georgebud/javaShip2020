@@ -29,7 +29,7 @@ public class BiancaMovieImporter implements MovieImporter {
       reader.close();
 
     } catch (IOException | ParseException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
     return movies;
   }

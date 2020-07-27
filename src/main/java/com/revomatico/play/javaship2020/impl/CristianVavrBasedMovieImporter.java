@@ -1,5 +1,6 @@
 package com.revomatico.play.javaship2020.impl;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
@@ -35,7 +36,7 @@ public class CristianVavrBasedMovieImporter implements MovieImporter {
         //.groupBy(movie -> movie.getTitle().charAt(0))
         .toJavaList();
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
   }
 
@@ -68,7 +69,7 @@ public class CristianVavrBasedMovieImporter implements MovieImporter {
       }
 
     } catch (IOException | CsvValidationException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
     return index;
   }
