@@ -86,6 +86,13 @@ public class PopcornAppTest {
     assertThatThrownBy(() -> movieImporter.importMediaItems("movies-inexistent-file.csv"
         + "smth")).isInstanceOf(RuntimeException.class);
   }
+  
+  @Test
+  public void testAntoniaPlaylistId() {
+	  YouTubeImporterAntonia playlist = new YouTubeImporterAntonia();
+	  assertThat(playlist.getIdOfPlaylist("UCogyDjqEVcRWajNRm6PWx7Q","AIzaSyBQ0yj3OzsENXmMJ5sXlwp-r-U7ZzAUAZM")).isNotNull(); 
+	  assertThat(playlist.importMediaItems("")).isNotNull(); 
+  }
 
   @Test
   public void listMoviesSortedGeorge() {

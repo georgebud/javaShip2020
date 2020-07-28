@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.base.Preconditions;
 import com.revomatico.play.javaship2020.impl.AntoniaMovieImporter;
 import com.revomatico.play.javaship2020.impl.DeezerPlaylistImporter;
+import com.revomatico.play.javaship2020.impl.YouTubeImporterAntonia;
 import com.revomatico.play.javaship2020.impl.YoutubePlaylistImporter;
 import io.vavr.collection.Iterator;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +29,13 @@ public class MultimediaController {
   public List<MovieModel> playlists() {
     List<MediaItem> list = new DeezerPlaylistImporter().importMediaItems("src/main/resources/WATCHLIST.csv");
     List<MediaItem> list2 = new YoutubePlaylistImporter().importMediaItems("");
+    List<MediaItem> list3 = new YouTubeImporterAntonia().importMediaItems("");
 
     return Iterator.ofAll(list)
       .toList()
       .appendAll(movieImporter.importMediaItems("src/main/resources/WATCHLIST.csv"))
       .appendAll(list2)
+      .appendAll(list3)
       .map(this::toMovieModel)
       .toJavaList();
   }
