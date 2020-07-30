@@ -77,7 +77,8 @@ public class PopcornAppTest {
   public void testForFullCoverageAntonia() {
     PopcornApp app = new PopcornApp();
     AntoniaMovieImporter movieImporter = new AntoniaMovieImporter();
-    assertThatThrownBy(() -> app.setMovies(movieImporter.importMediaItems(null))).isInstanceOf(NullPointerException.class);
+    assertThatThrownBy(() -> app.setMovies(movieImporter.importMediaItems(null)))
+      .isInstanceOf(NullPointerException.class);
   }
 
   @Test
@@ -86,12 +87,13 @@ public class PopcornAppTest {
     assertThatThrownBy(() -> movieImporter.importMediaItems("movies-inexistent-file.csv"
         + "smth")).isInstanceOf(RuntimeException.class);
   }
-  
+
   @Test
   public void testAntoniaPlaylistId() {
-	  YouTubeImporterAntonia playlist = new YouTubeImporterAntonia();
-	  assertThat(playlist.getIdOfPlaylist("UCogyDjqEVcRWajNRm6PWx7Q","AIzaSyBQ0yj3OzsENXmMJ5sXlwp-r-U7ZzAUAZM")).isNotNull(); 
-	  assertThat(playlist.importMediaItems("")).isNotNull(); 
+    YouTubeImporterAntonia playlist = new YouTubeImporterAntonia();
+    assertThat(playlist.getIdOfPlaylist("UCogyDjqEVcRWajNRm6PWx7Q", "AIzaSyBQ0yj3OzsENXmMJ5sXlwp-r-U7ZzAUAZM"))
+      .isNotNull();
+    assertThat(playlist.importMediaItems("")).isNotNull();
   }
 
   @Test
