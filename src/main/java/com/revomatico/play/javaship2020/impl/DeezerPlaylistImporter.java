@@ -14,7 +14,7 @@ public class DeezerPlaylistImporter implements MediaItemImporter {
   public List<MediaItem> importMediaItems(String path) {
     //apacheHttpClient, Unirest
     String content = Locations.url("https://api.deezer.com/playlist/183049161").readContentSync();
-    System.out.println(content);
+    //System.out.println(content);
     //jackson
     DeezerPlaylist result = Nodes.json.withIgnoreUnknwon().toObject(content, DeezerPlaylist.class);
     return result.tracks.data.map(x -> x.validate()).toJavaList();
