@@ -1,0 +1,49 @@
+<configuration debug="true">
+  <appender
+    name="STDOUT"
+    class="ch.qos.logback.core.ConsoleAppender"
+  > 
+    <!-- encoders are  by default assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+    <encoder>
+      <!-- 
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      -->
+      <pattern>%4relative #%-5level [%-15.41thread] %-120message - %logger{10.10}.%-20.20method \(%file:%line\) - %n%xException</pattern>
+    </encoder>
+  </appender>
+  <appender
+    name="FILE"
+    class="ch.qos.logback.core.rolling.RollingFileAppender"
+  >
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg \(%file:%line\)%n</Pattern>
+    </layout>
+    <file>target/internship.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>target/internship-log-old-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+      <maxFileSize>100MB</maxFileSize>
+      <!-- keep 7 days' worth of history -->
+      <maxHistory>7</maxHistory>
+      <totalSizeCap>20GB</totalSizeCap>
+    </rollingPolicy>
+  </appender>
+  <root level="info"><!-- error, warn, info, debug, trace -->
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
+  </root>
+  <logger
+    name="org.apache.http"
+    level="info" />
+  <logger
+    name="org.raisercostin.jedio"
+    level="info" />
+  <logger
+    name="com.revomatico.play.javaship2020"
+    level="debug"
+  >
+    <!-- 
+    <appender-ref ref="FILE" />
+     -->
+  </logger>
+</configuration>

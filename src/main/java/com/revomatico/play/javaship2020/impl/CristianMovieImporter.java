@@ -48,7 +48,7 @@ public class CristianMovieImporter implements MediaItemImporter {
             productionDate = format.parse(cell);
           }
         }
-        movieList.add(new MediaItem(title, productionDate));
+        movieList.add(new MediaItem(path, title, productionDate));
       }
 
     } catch (Exception e) {

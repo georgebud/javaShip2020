@@ -6,7 +6,10 @@ import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 import com.revomatico.play.javaship2020.MediaItem;
 import com.revomatico.play.javaship2020.MediaItemImporter;
@@ -30,7 +33,7 @@ public class AncaMovieImporter implements MediaItemImporter {
           hashMap.put(c[i], split[i]);
         }
 
-        movies.add(new MediaItem(hashMap.get("Title"),
+        movies.add(new MediaItem(path, hashMap.get("Title"),
           df.parse(hashMap.get("Release Date")),
           hashMap.get("Image"), "",
           hashMap.get("URL")));

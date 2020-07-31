@@ -1,14 +1,16 @@
 package com.revomatico.play.javaship2020.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.revomatico.play.javaship2020.MediaItem;
 import com.revomatico.play.javaship2020.MediaItemImporter;
+import io.vavr.API;
+import io.vavr.Tuple2;
+import io.vavr.collection.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.raisercostin.jedio.Locations;
-import org.raisercostin.nodes.Nodes;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class YouTubeImporterAntonia implements MediaItemImporter {
   private static String myApiKey = "AIzaSyBQ0yj3OzsENXmMJ5sXlwp-r-U7ZzAUAZM";
@@ -18,42 +20,29 @@ public class YouTubeImporterAntonia implements MediaItemImporter {
 
   @Override
   public List<MediaItem> importMediaItems(String path) {
-
-    List<String> idsOfPlaylists = getIdOfPlaylist(channelId, myApiKey);
-    List<MediaItem> allTracks = new ArrayList<>();
-
-    for (String playListId : idsOfPlaylists) {
-      String content = Locations.url(
-        "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + playListId + "&key="
-            + myApiKey)
-        .readContentSync();
-      //System.out.println(content);
-      YoutubePlaylist result = Nodes.json.withIgnoreUnknwon().toObject(content, YoutubePlaylist.class);
-
-      allTracks.addAll(
-        result.items.map(youtubeItem -> youtubeItem.snippet)
-          .map(x -> x.validate())
-          .toJavaList());
-    }
-    return allTracks;
+    Vector<Tuple2<String, String>> idsOfPlaylists = getIdOfPlaylist(channelId, myApiKey);
+    return idsOfPlaylists
+      .flatMap(playlistId -> YoutubePlaylistImporter.readPlaylist(playlistId._1, playlistId._2, myApiKey))
+      .toJavaList();
   }
 
-  public static List<String> getIdOfPlaylist(String channelId, String myApiKey) {
+  public static Vector<Tuple2<String, String>> getIdOfPlaylist(String channelId, String myApiKey) {
     String content = Locations
       .url("https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails&channelId="
           + channelId + "&key=" + myApiKey)
       .readContentSync();
 
-    List<String> idsOfPlaylists = new ArrayList<String>();
+    List<Tuple2<String, String>> idsOfPlaylists = new ArrayList<>();
 
     //YoutubePlaylistAntonia result = Nodes.json.withIgnoreUnknwon().toObject(content, YoutubePlaylistAntonia.class);
     JSONObject obj = new JSONObject(content);
     JSONArray arr = obj.getJSONArray("items");
     for (int i = 0; i < arr.length(); i++) {
       String id = arr.getJSONObject(i).getString("id");
-      idsOfPlaylists.add(id);
+      String source = arr.getJSONObject(i).getJSONObject("snippet").getString("title");
+      idsOfPlaylists.add(API.Tuple(source, id));
       //System.out.println(id);
     }
-    return idsOfPlaylists;
+    return Vector.ofAll(idsOfPlaylists);
   }
 }

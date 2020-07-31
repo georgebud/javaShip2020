@@ -1,0 +1,2 @@
+@testPlaylist=PL4o29bINVT4EG_y-k5jGoOu3-Am8Nvi10
+https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId={{playlistId}}&key=AIzaSyDaU9IH856cYXsNvoctljCzAStI8kbmGrI

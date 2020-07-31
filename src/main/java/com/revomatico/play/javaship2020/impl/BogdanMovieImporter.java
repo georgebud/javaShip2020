@@ -27,7 +27,7 @@ public class BogdanMovieImporter implements MediaItemImporter {
 
         try {
           Date date = new SimpleDateFormat("mm/dd/yyyy").parse(movieProprieties[movieProprieties.length - 2]);
-          movies.add(new MediaItem(movieProprieties[5], date));
+          movies.add(new MediaItem(path, movieProprieties[5], date));
         } catch (ParseException e) {
           throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
         }

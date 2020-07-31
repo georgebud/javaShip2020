@@ -5,28 +5,38 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Preconditions;
 import io.vavr.collection.Map;
-import org.raisercostin.nodes.Nodes;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MediaItem implements Comparable<MediaItem> {
+  public String source;
   private final String title;
   private final Date releaseDate;
   private String image;
   private final String description;
   //needed for Deezer
   @JsonProperty("link")
-  public final String url;
+  public String url;
 
   private MediaItem() {
-    this(null, null, null, null, null);
+    this(null, null, null, null, null, null);
+  }
+
+  @Deprecated
+  //Try to use the other better constructor that doesn't allow invalid data
+  public MediaItem(String source, String title, Date releaseDate) {
+    this(source, title, releaseDate, "https://cdn.vuetifyjs.com/images/lists/5.jpg", "no movie description", "no url");
   }
 
   @Deprecated
   //Try to use the other better constructor that doesn't allow invalid data
   public MediaItem(String title, Date releaseDate) {
-    this(title, releaseDate, "https://cdn.vuetifyjs.com/images/lists/5.jpg", "no movie description", "no url");
+    this("unknwon source", title, releaseDate, "https://cdn.vuetifyjs.com/images/lists/5.jpg", "no movie description",
+      "no url");
   }
 
-  public MediaItem(String title, Date releaseDate, String image, String description, String url) {
+  public MediaItem(String source, String title, Date releaseDate, String image, String description, String url) {
+    this.source = source;
     this.title = title;
     this.releaseDate = releaseDate;
     //Preconditions.checkNotNull(releaseDate);
@@ -88,7 +98,19 @@ public class MediaItem implements Comparable<MediaItem> {
     try {
       image = thumbnails.get("default").getOrNull().get("url").getOrNull();
     } catch (NullPointerException e) {
+      log.trace("this exception is normal", e);
       image = "youtube no image";
+    }
+  }
+
+  // needed to read image in youtube
+  @JsonProperty("resourceId")
+  private void unpackResourceId(Map<String, String> resourceId) {
+    try {
+      url = "https://www.youtube.com/watch?v=" + resourceId.get("videoId").get();
+    } catch (NullPointerException e) {
+      log.trace("this exception is normal", e);
+      url = "";
     }
   }
 }

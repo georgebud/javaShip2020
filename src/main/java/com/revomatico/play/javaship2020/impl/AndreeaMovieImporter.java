@@ -32,7 +32,7 @@ public class AndreeaMovieImporter implements MediaItemImporter {
       while (readerLines.hasNextLine()) {
         line = readerLines.nextLine();
         String[] info = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        movieList.add(new MediaItem(info[5],
+        movieList.add(new MediaItem(path, info[5],
           format.parse(info[10])));
       }
       readerLines.close();

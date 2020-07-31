@@ -26,7 +26,7 @@ public class AndreiMovieImporter implements MediaItemImporter {
         String csvReaderLine = csvReader.nextLine();
         String[] bufferSplit = csvReaderLine.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
         Date movieDate = date.parse(bufferSplit[10]);
-        AndreiArray.add(new MediaItem(bufferSplit[5], movieDate));
+        AndreiArray.add(new MediaItem(path, bufferSplit[5], movieDate));
       }
       csvReader.close();
     } catch (IOException | ParseException e) {

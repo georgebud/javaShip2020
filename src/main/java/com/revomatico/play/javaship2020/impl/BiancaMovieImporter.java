@@ -24,7 +24,7 @@ public class BiancaMovieImporter implements MediaItemImporter {
       while (reader.hasNextLine()) {
         row = reader.nextLine();
         String[] data = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        movies.add(new MediaItem(data[5], dateFormat.parse(data[10])));
+        movies.add(new MediaItem(path, data[5], dateFormat.parse(data[10])));
       }
       reader.close();
 

@@ -14,7 +14,9 @@ import java.util.Scanner;
 import com.revomatico.play.javaship2020.MediaItem;
 import com.revomatico.play.javaship2020.MediaItemImporter;
 
+//@Slf4j
 public class AdrianMovieImporter implements MediaItemImporter {
+  private final static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdrianMovieImporter.class);
 
   @Override
   public List<MediaItem> importMediaItems(String path) {
@@ -36,12 +38,15 @@ public class AdrianMovieImporter implements MediaItemImporter {
 
     while (s.hasNext()) {
       List<String> line = CSVReader.parseLine(s.nextLine());
+      if (log.isDebugEnabled()) {
+        log.debug("extracted line {}", line);
+      }
       String title = line.get(titleIndex);
       String date = line.get(dateIndex);
       DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
       Date releaseDate = format.parse(date);
 
-      MediaItem movie = new MediaItem(title, releaseDate);
+      MediaItem movie = new MediaItem(filepath, title, releaseDate);
       movies.add(movie);
     }
     Collections.sort(movies);

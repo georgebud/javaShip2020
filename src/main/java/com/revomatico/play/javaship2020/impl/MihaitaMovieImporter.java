@@ -1,16 +1,15 @@
 package com.revomatico.play.javaship2020.impl;
 
-import com.revomatico.play.javaship2020.MediaItem;
-import com.revomatico.play.javaship2020.MediaItemImporter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
 
 public class MihaitaMovieImporter implements MediaItemImporter {
 

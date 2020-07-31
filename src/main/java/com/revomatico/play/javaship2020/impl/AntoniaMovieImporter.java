@@ -42,7 +42,7 @@ public class AntoniaMovieImporter implements MediaItemImporter {
           hm.put(columnNames[i], s[i]);
         }
 
-        MediaItem movie = new MediaItem(hm.get("Title"), dateFormat.parse(hm.get("Release Date")),
+        MediaItem movie = new MediaItem(path, hm.get("Title"), dateFormat.parse(hm.get("Release Date")),
           hm.get("Image"), line,
           //TODO to add url from csv
           ""); //s[5]=title s[13]=releaseDate, s[17] image
