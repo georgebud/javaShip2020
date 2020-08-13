@@ -1,4 +1,4 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,46 +11,47 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class AdrianMovieImporter implements MovieImporter {
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
+
+//@Slf4j
+public class AdrianMovieImporter implements MediaItemImporter {
+  private final static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdrianMovieImporter.class);
 
   @Override
-  public List<com.revomatico.play.javaship2020.Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
     try {
       return readMovies(path);
     } catch (FileNotFoundException | ParseException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("When reading file from [" + new File(path).getAbsolutePath() + "]", e);
     }
   }
 
-  public List<Movie> readMovies(String filepath) throws FileNotFoundException, ParseException {
+  public List<MediaItem> readMovies(String filepath) throws FileNotFoundException, ParseException {
     int titleIndex = 5;
     int dateIndex = 13;
 
     Scanner s = new Scanner(new File(filepath));
     // skip the first line
     s.nextLine();
-    List<Movie> movies = new ArrayList<>();
+    List<MediaItem> movies = new ArrayList<>();
 
     while (s.hasNext()) {
       List<String> line = CSVReader.parseLine(s.nextLine());
+      if (log.isDebugEnabled()) {
+        log.debug("extracted line {}", line);
+      }
       String title = line.get(titleIndex);
       String date = line.get(dateIndex);
       DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
       Date releaseDate = format.parse(date);
 
-      Movie movie = new Movie(title, releaseDate);
+      MediaItem movie = new MediaItem(filepath, title, releaseDate);
       movies.add(movie);
     }
     Collections.sort(movies);
 
     return movies;
-  }
-
-  public static void main(String[] args) throws FileNotFoundException, ParseException {
-    String path = "/home/adrian/Documents/javaShip2020/src/main/resources/WATCHLIST.csv";
-    AdrianMovieImporter a = new AdrianMovieImporter();
-    List<Movie> movies = a.readMovies(path);
-    System.out.println(movies);
   }
 }
 

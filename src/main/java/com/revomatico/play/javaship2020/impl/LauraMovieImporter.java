@@ -1,4 +1,4 @@
-package com.revomatico.play.javaship2020;
+package com.revomatico.play.javaship2020.impl;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,15 +9,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class LauraMovieImporter implements MovieImporter {
+import com.revomatico.play.javaship2020.MediaItem;
+import com.revomatico.play.javaship2020.MediaItemImporter;
+
+public class LauraMovieImporter implements MediaItemImporter {
 
   @Override
-  public List<Movie> importMovies(String path) {
+  public List<MediaItem> importMediaItems(String path) {
 
-    List<Movie> movies = new ArrayList<>();
+    List<MediaItem> movies = new ArrayList<>();
     SimpleDateFormat format = new SimpleDateFormat("yyyy");
-    try {
-      BufferedReader csvReader = new BufferedReader(new FileReader(path));
+    try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
 
       csvReader.readLine(); //read the first line containing the name of columns
       String row;
@@ -25,11 +27,10 @@ public class LauraMovieImporter implements MovieImporter {
         String[] columns = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); //split the data
         String movieTitle = columns[5].replaceAll("^[\"']+|[\"']+$", ""); //remove possible "(movie title)"
         Date productionYear = format.parse(columns[10]);
-        movies.add(new Movie(movieTitle, productionYear));
+        movies.add(new MediaItem(movieTitle, productionYear));
       }
-      csvReader.close();
     } catch (IOException | ParseException e) {
-      e.printStackTrace();
+      throw new RuntimeException("When importing movies from csv", e);
     }
 
     return movies;

@@ -1,0 +1,13 @@
+@playlistId=PL4o29bINVT4EG_y-k5jGoOu3-Am8Nvi10
+GET https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId={{playlistId}}&key=AIzaSyDaU9IH856cYXsNvoctljCzAStI8kbmGrI
+
+###
+https://www.youtube.com/watch?v=pok8H_KF1FA
+###
+https://www.youtube.com/watch?v={{videoId}}
+
+###
+
+@channelId=UCogyDjqEVcRWajNRm6PWx7Q
+@apikey=AIzaSyBQ0yj3OzsENXmMJ5sXlwp-r-U7ZzAUAZM
+https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails&channelId={{channelId}}&key={{apikey}}

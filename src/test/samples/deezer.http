@@ -1,0 +1,11 @@
+@testPlaylist=236673741
+
+
+###
+GET https://api.deezer.com/playlist/{{testPlaylist}}
+
+
+
+###
+https://api.deezer.com/user/me/tracks
+
